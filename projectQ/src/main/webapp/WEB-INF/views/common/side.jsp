@@ -54,7 +54,7 @@
 		</ul>
 	</li>
 	<li>
-		<h3>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;베스트</h3>
+		<h3>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;베스트</h3>
 		<ul>
 			<li><a href="#">세일상품</a></li>
 			<li><a href="#">New신상품</a></li>

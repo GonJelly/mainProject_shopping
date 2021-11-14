@@ -20,7 +20,7 @@ import com.projectQ.conf.goods.vo.ImageFileVO;
 
 public abstract class baseController {
 	
-	private static final String CURR_IMAGE_REPO_PATH = "C:\\shopping\\file_repo";
+	private static final String CURR_IMAGE_REPO_PATH = "C:\\FREE\\file_repo";
 	
 	// 경로에 파일 저장하기 , 상속시에만!!
 	protected List<ImageFileVO> upload(MultipartHttpServletRequest multipartRequest,HttpServletResponse response) throws Exception{
