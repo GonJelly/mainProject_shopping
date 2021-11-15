@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import com.projectQ.conf.goods.dao.GoodsDAO;
 import com.projectQ.conf.goods.vo.GoodsVO;
+import com.projectQ.conf.goods.vo.ImageFileVO;
 
 @Service("goodsService")
 public class GoodsServiceImpl implements GoodsService{
@@ -32,6 +33,20 @@ public class GoodsServiceImpl implements GoodsService{
 		
 		goodsList = goodsDAO.selectGoodsList("shoes");
 		goodsMap.put("shoes",goodsList);
+		
+		return goodsMap;
+	}
+
+	@Override
+	public Map goodsDetailList(String goods_id) throws DataAccessException {
+		
+		Map goodsMap = new HashMap();
+		
+		GoodsVO goodsVO = goodsDAO.selectGoodsDetail(goods_id);
+		goodsMap.put("goodsVO", goodsVO);
+		
+		List<ImageFileVO> imageList = goodsDAO.selectGoodsImage(goods_id);
+		goodsMap.put("imageList",imageList);
 		
 		return goodsMap;
 	}

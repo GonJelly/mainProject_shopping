@@ -21,6 +21,15 @@
 		<result property="goods_creDate" column="goods_creDate"/>
 		<result property="goods_fileName" column="fileName" />
 	</resultMap>
+	
+	<resultMap id="imageResult" type="imageVO">
+		<result property="image_id" column="image_id"></result>
+		<result property="goods_id" column="goods_id"></result>
+		<result property="fileName" column="fileName"></result>
+		<result property="reg_id" column="reg_id"></result>
+		<result property="fileType" column="fileType"></result>
+		<result property="creDate" column="creDate"></result>
+	</resultMap>
 
 	<select id="selectGoodsList" parameterType="String" resultMap="goodsResult">
 		<![CDATA[
@@ -32,10 +41,30 @@
 				and d.fileType = 'main_image'
 				and g.goods_status = #{goods}
 				order by g.goods_credate desc) t
-			where 'rowNum' < 20
+			where 'rowNum' < 10
 		]]>
 	</select>
 	
+	<select id="selectGoodsDetail" parameterType="String" resultMap="goodsResult">
+		<![CDATA[
+				select g.*,d.fileName
+				from t_shopping_goods g, t_goods_detail_image d
+				where g.goods_id = d.goods_id
+				and d.fileType = 'main_image'
+				and g.goods_id = #{goods_id}
+				order by g.goods_credate desc
+		]]>
+	</select>
+	
+	<select id="selectGoodsImage" parameterType="String" resultMap="imageResult">
+		<![CDATA[
+			select *
+			from t_goods_detail_image
+			where goods_id = #{goods_id}
+			and fileType = 'detail_image'
+			order by credate desc
+		]]>
+	</select>
 
 
 </mapper>

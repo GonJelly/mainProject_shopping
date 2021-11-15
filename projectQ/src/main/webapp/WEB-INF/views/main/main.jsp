@@ -30,7 +30,7 @@
 			<div class="title">${item.goods_title }</div>
 			<div class="price">
 		  	   <fmt:formatNumber  value="${item.goods_price}" type="number" var="goods_price" />
-		  	   <fmt:formatNumber  value="${item.goods_sales_price}" type="number" var="goods_sales_price" />
+		  	   <fmt:formatNumber  value="${item.goods_price*0.9}" type="number" var="goods_sales_price" />
 		          <h5>${goods_price}원</h5> <span><h6>${goods_sales_price}원</h6></span>
 			</div>
 		</div>

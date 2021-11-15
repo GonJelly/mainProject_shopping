@@ -2,6 +2,9 @@ package com.projectQ.conf.goods.vo;
 
 import java.sql.Date;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class ImageFileVO {
 	
 	private int image_id;

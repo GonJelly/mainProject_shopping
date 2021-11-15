@@ -131,10 +131,10 @@ function fn_order_each_goods(goods_id,goods_title,goods_sales_price,fileName){
 </head>
 <body>
 	<hgroup>
-		<h1>컴퓨터와 인터넷</h1>
-		<h2>국내외 도서 &gt; 컴퓨터와 인터넷 &gt; 웹 개발</h2>
+		<h1>빅사이즈</h1>
+		<h2>상의 &gt; 점퍼&코드</h2>
 		<h3>${goods.goods_title }</h3>
-		<h4>${goods.goods_writer} &nbsp; 저| ${goods.goods_publisher}</h4>
+		<%-- <h4>${goods.goods_writer} &nbsp; 저| ${goods.goods_publisher}</h4> --%>
 	</hgroup>
 	<div id="goods_image">
 		<figure>
@@ -174,14 +174,18 @@ function fn_order_each_goods(goods_id,goods_title,goods_sales_price,fileName){
 					   <c:out value="${arr[0]}" />
 					</td>
 				</tr>
+				<%-- 
 				<tr>
 					<td class="fixed">페이지 수</td>
 					<td class="fixed">${goods.goods_total_page}쪽</td>
 				</tr>
+				 --%>
+				<%-- 
 				<tr class="dot_line">
 					<td class="fixed">ISBN</td>
 					<td class="fixed">${goods.goods_isbn}</td>
 				</tr>
+				 --%>
 				<tr>
 					<td class="fixed">배송료</td>
 					<td class="fixed"><strong>무료</strong></td>

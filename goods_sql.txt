@@ -1,22 +1,22 @@
 참조사이트 : https://www.okkane.co.kr/
 
-CREATE TABLE `t_shopping_goods` (
-	`goods_id` INT(20) NOT NULL,
-	`goods_sort` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8_swedish_ci',
-	`goods_title` VARCHAR(100) NULL DEFAULT NULL COLLATE 'utf8_swedish_ci',
-	`goods_publisher` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8_swedish_ci',
-	`goods_price` INT(10) NULL DEFAULT NULL,
-	`goods_sales_price` INT(10) NULL DEFAULT NULL,
-	`goods_point` INT(10) NULL DEFAULT NULL,
-	`goods_published_date` DATE NULL DEFAULT NULL,
-	`goods_color` VARCHAR(20) NULL DEFAULT NULL COLLATE 'utf8_swedish_ci',
-	`goods_delivery_price` INT(10) NULL DEFAULT NULL,
-	`goods_delivery_date` DATE NULL DEFAULT NULL,
-	`goods_status` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8_swedish_ci',
-	`goods_intro` VARCHAR(2000) NULL DEFAULT NULL COLLATE 'utf8_swedish_ci',
-	`goods_credate` DATE NULL DEFAULT sysdate(),
-	PRIMARY KEY (`goods_id`) USING BTREE
-)
+CREATE TABLE t_shopping_goods (
+	goods_id INT(20) NOT NULL,
+	goods_sort VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8_swedish_ci',
+	goods_title VARCHAR(100) NULL DEFAULT NULL COLLATE 'utf8_swedish_ci',
+	goods_publisher` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8_swedish_ci',
+	goods_price INT(10) NULL DEFAULT NULL,
+	goods_sales_price INT(10) NULL DEFAULT NULL,
+	goods_point INT(10) NULL DEFAULT NULL,
+	goods_published_date DATE NULL DEFAULT NULL,
+	goods_color VARCHAR(20) NULL DEFAULT NULL COLLATE 'utf8_swedish_ci',
+	goods_delivery_price INT(10) NULL DEFAULT NULL,
+	goods_delivery_date DATE NULL DEFAULT NULL,
+	goods_status VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8_swedish_ci',
+	goods_intro VARCHAR(2000) NULL DEFAULT NULL COLLATE 'utf8_swedish_ci',
+	goods_credate DATE NULL DEFAULT sysdate(),
+	PRIMARY KEY (goods_id)
+);
 
 CREATE TABLE t_goods_detail_image (
 	image_id INT(20),
@@ -27,7 +27,7 @@ CREATE TABLE t_goods_detail_image (
 	creDate DATE DEFAULT SYSDATE(),
 	PRIMARY KEY(image_id),
 	CONSTRAINT FK_goods_image FOREIGN KEY(goods_id) REFERENCES t_shopping_goods(goods_id)
-)
+);
 
 -- 상품 정보 테이블 --
 INSERT INTO t_shopping_goods(goods_id,goods_sort,goods_title,goods_publisher,goods_price,goods_sales_price,goods_point,goods_published_date,goods_color,goods_delivery_price,goods_delivery_date,goods_status,goods_intro,goods_credate) VALUES (314,'','스턴트 코튼야상','FREE',82000,80000,2000,STR_TO_DATE('19/10/20','%y/%m/%d'),'카키',3000,STR_TO_DATE('19/10/27','%y/%m/%d'),'bigsize','',STR_TO_DATE('21/07/06','%y/%m/%d'));
