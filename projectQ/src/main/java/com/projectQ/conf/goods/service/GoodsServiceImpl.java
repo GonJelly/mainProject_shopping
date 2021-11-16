@@ -51,4 +51,20 @@ public class GoodsServiceImpl implements GoodsService{
 		return goodsMap;
 	}
 
+	@Override
+	public List<String> keywordSearch(String keyword) throws DataAccessException {
+		
+		List<String> keywordList = goodsDAO.selectKeyword(keyword);
+		
+		return keywordList;
+	}
+
+	@Override
+	public List<GoodsVO> goodsSearch(String searchWord) throws DataAccessException {
+		
+		List<GoodsVO> goodsList = goodsDAO.selectGoodsSearch(searchWord);
+		
+		return goodsList;
+	}
+
 }

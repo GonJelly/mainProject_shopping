@@ -17,7 +17,7 @@
 <div class="clear"></div>
 <a href="#"><img width="147px"  height="72px" alt="Booktopia" src="${contextPath}/resources/image/main_Logo2.jpg" /></a>
 <div style="padding-left:200px">
-	 ㈜북토피아 <br>
+	 ㈜FREE <br>
 	 대표이사: 이병승   <br>
 	 주소 : 우편번호 03133 서울시 종로구 종로3 <br>  
 	 사업자등록번호 : 102-81-11111 <br>

@@ -41,4 +41,20 @@ public class GoodsDAOImpl implements GoodsDAO{
 		return imageList;
 	}
 
+	@Override
+	public List<String> selectKeyword(String keyword) throws DataAccessException {
+		
+		List<String> keywordList = (ArrayList)sqlSession.selectList("mapper.goods.selectKeyword",keyword);
+		
+		return keywordList;
+	}
+
+	@Override
+	public List<GoodsVO> selectGoodsSearch(String searchWord) throws DataAccessException {
+		
+		List<GoodsVO> goodsList = (ArrayList) sqlSession.selectList("mapper.goods.selectGoodsSearch",searchWord);
+		
+		return goodsList;
+	}
+
 }
