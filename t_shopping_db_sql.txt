@@ -1,0 +1,176 @@
+참조사이트 : https://www.okkane.co.kr/
+
+CREATE TABLE t_shopping_member(
+	member_id VARCHAR(20),
+	member_pw VARCHAR(20),
+	member_name VARCHAR(50),
+	member_gender VARCHAR(10),
+	h1 VARCHAR(20),
+	h2 VARCHAR(20),
+	h3 VARCHAR(20),
+	tel1 VARCHAR(20)
+	tel2 VARCHAR(20),
+	tel3 VARCHAR(20),
+	SMSSTS_YN VARCHAR(20),
+	email1 VARCHAR(20),
+	email2 VARCHAR(20),
+	emailSTS_YN VARCHAR(30),
+	member_birth_Y VARCHAR(20),
+	member_birth_M VARCHAR(20),
+	member_birth_D VARCHAR(20),
+	member_birth_GN VARCHAR(40),
+	ZIPCODE VARCHAR(20),
+	ROADADDRESS VARCHAR(500),
+	JIBUNADDRESS VARCHAR(500),
+	NAMUJIADDRESS VARCHAR(500),
+	joindate DATE DEFAULT SYSDATE(),
+	del_YN VARCHAR(20),
+	PRIMARY KEY(member_id)
+);
+
+CREATE TABLE t_shopping_goods (
+	goods_id INT(20) NOT NULL,
+	goods_sort VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8_swedish_ci',
+	goods_title VARCHAR(100) NULL DEFAULT NULL COLLATE 'utf8_swedish_ci',
+	goods_publisher` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8_swedish_ci',
+	goods_price INT(10) NULL DEFAULT NULL,
+	goods_sales_price INT(10) NULL DEFAULT NULL,
+	goods_point INT(10) NULL DEFAULT NULL,
+	goods_published_date DATE NULL DEFAULT NULL,
+	goods_color VARCHAR(20) NULL DEFAULT NULL COLLATE 'utf8_swedish_ci',
+	goods_delivery_price INT(10) NULL DEFAULT NULL,
+	goods_delivery_date DATE NULL DEFAULT NULL,
+	goods_status VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8_swedish_ci',
+	goods_intro VARCHAR(2000) NULL DEFAULT NULL COLLATE 'utf8_swedish_ci',
+	goods_credate DATE NULL DEFAULT sysdate(),
+	PRIMARY KEY (goods_id)
+);
+
+CREATE TABLE t_shopping_order(
+	order_seq_num INT(20),
+	order_id INT(20),
+	member_id VARCHAR(50),
+	goods_id INT(20),
+	orderer_name varchar(50),
+	goods_title VARCHAR(20),
+	order_goods_qty INT(5),
+	goods_sales_price INT(5),
+	goods_fileName VARCHAR(60),
+	receiver_name VARCHAR(50),
+	receiver_hp1 VARCHAR(20),
+	receiver_hp2 VARCHAR(20),
+	receiver_hp3 VARCHAR(20),
+	receiver_tel1 VARCHAR(20),
+	receiver_tel2 varchar(20),
+	receiver_tel3 varchar(20),
+	delivery_address VARCHAR(500),
+	delivery_method VARCHAR(40),
+	delivery_message VARCHAR(300),
+	gift_wrapping VARCHAR(20),
+	pay_method VARCHAR(200),
+	card_com_name VARCHAR(50),
+	card_pay_month VARCHAR(20),
+	pay_orderer_hp_num VARCHAR(20),
+	delivery_state VARCHAR(30) DEFAULT 'delivery_prepared',
+	pay_oder_time DATE DEFAULT SYSDATE(),
+	orderer_hp VARCHAR(50),
+	PRIMARY KEY(order_seq_num),
+	CONSTRAINT FK_goods_order FOREIGN KEY(goods_id) REFERENCES t_shopping_goods(goods_id),
+	CONSTRAINT FK_member_order FOREIGN KEY(member_id) REFERENCES t_shopping_member(member_id)
+);
+
+CREATE TABLE t_goods_detail_image (
+	image_id INT(20),
+	goods_id INT(20),
+	fileName VARCHAR(50),
+	reg_id VARCHAR(20),
+	fileType VARCHAR(40),
+	creDate DATE DEFAULT SYSDATE(),
+	PRIMARY KEY(image_id),
+	CONSTRAINT FK_goods_image FOREIGN KEY(goods_id) REFERENCES t_shopping_goods(goods_id)
+);
+
+CREATE TABLE t_shopping_cart (
+	cart_id	INT(10),
+	goods_id INT(10),
+	member_id VARCHAR(20),
+	del_YN VARCHAR(20) DEFAULT 'N',
+	credate DATE DEFAULT SYSDATE(),
+	cart_goods_qty INT(5),
+	PRIMARY KEY(cart_id),
+	CONSTRAINT FK_goods_cart FOREIGN KEY(goods_id) REFERENCES t_shopping_goods(goods_id),
+	CONSTRAINT FK_member_cart FOREIGN KEY(member_id) REFERENCES t_shopping_member(member_id)
+);
+
+
+
+-- 상품 정보 테이블 --
+INSERT INTO t_shopping_goods(goods_id,goods_sort,goods_title,goods_publisher,goods_price,goods_sales_price,goods_point,goods_published_date,goods_color,goods_delivery_price,goods_delivery_date,goods_status,goods_intro,goods_credate) VALUES (314,'','스턴트 코튼야상','FREE',82000,80000,2000,STR_TO_DATE('19/10/20','%y/%m/%d'),'카키',3000,STR_TO_DATE('19/10/27','%y/%m/%d'),'bigsize','',STR_TO_DATE('21/07/06','%y/%m/%d'));
+INSERT INTO t_shopping_goods(goods_id,goods_sort,goods_title,goods_publisher,goods_price,goods_sales_price,goods_point,goods_published_date,goods_color,goods_delivery_price,goods_delivery_date,goods_status,goods_intro,goods_credate) VALUES (315,'','신기루 라쿤 오리털 야상','FREE',169000,160000,3000,STR_TO_DATE('19/10/20','%y/%m/%d'),'블랙',3000,STR_TO_DATE('19/10/27','%y/%m/%d'),'bigsize','',STR_TO_DATE('21/07/06','%y/%m/%d'));
+INSERT INTO t_shopping_goods(goods_id,goods_sort,goods_title,goods_publisher,goods_price,goods_sales_price,goods_point,goods_published_date,goods_color,goods_delivery_price,goods_delivery_date,goods_status,goods_intro,goods_credate) VALUES (316,'','스너그 양털 양면점퍼','FREE',84000,79000,2000,STR_TO_DATE('19/10/20','%y/%m/%d'),'블랙',3000,STR_TO_DATE('19/10/27','%y/%m/%d'),'bigsize','',STR_TO_DATE('21/07/06','%y/%m/%d'));
+INSERT INTO t_shopping_goods(goods_id,goods_sort,goods_title,goods_publisher,goods_price,goods_sales_price,goods_point,goods_published_date,goods_color,goods_delivery_price,goods_delivery_date,goods_status,goods_intro,goods_credate) VALUES (317,'','라리나그 히든버튼코트','FREE',142000,135000,3000,STR_TO_DATE('19/10/20','%y/%m/%d'),'블랙',3000,STR_TO_DATE('19/10/27','%y/%m/%d'),'bigsize','',STR_TO_DATE('21/07/06','%y/%m/%d'));
+INSERT INTO t_shopping_goods(goods_id,goods_sort,goods_title,goods_publisher,goods_price,goods_sales_price,goods_point,goods_published_date,goods_color,goods_delivery_price,goods_delivery_date,goods_status,goods_intro,goods_credate) VALUES (318,'','카길 보아털 후리스집업 2160','FREE',30000,30000,1000,STR_TO_DATE('19/10/20','%y/%m/%d'),'그레이',3000,STR_TO_DATE('19/10/27','%y/%m/%d'),'bigsize','',STR_TO_DATE('21/07/06','%y/%m/%d'));
+INSERT INTO t_shopping_goods(goods_id,goods_sort,goods_title,goods_publisher,goods_price,goods_sales_price,goods_point,goods_published_date,goods_color,goods_delivery_price,goods_delivery_date,goods_status,goods_intro,goods_credate) VALUES (319,'','카소그 테디베어코트','FREE',148000,140000,3000,STR_TO_DATE('19/10/20','%y/%m/%d'),'갈색',3000,STR_TO_DATE('19/10/27','%y/%m/%d'),'bigsize','',STR_TO_DATE('21/07/06','%y/%m/%d'));
+INSERT INTO t_shopping_goods(goods_id,goods_sort,goods_title,goods_publisher,goods_price,goods_sales_price,goods_point,goods_published_date,goods_color,goods_delivery_price,goods_delivery_date,goods_status,goods_intro,goods_credate) VALUES (421,'','콘트라 배색 양털후드집업','FREE',42000,40000,1000,STR_TO_DATE('19/10/20','%y/%m/%d'),'네이비',3000,STR_TO_DATE('19/10/27','%y/%m/%d'),'top','',STR_TO_DATE('21/07/06','%y/%m/%d'));
+INSERT INTO t_shopping_goods(goods_id,goods_sort,goods_title,goods_publisher,goods_price,goods_sales_price,goods_point,goods_published_date,goods_color,goods_delivery_price,goods_delivery_date,goods_status,goods_intro,goods_credate) VALUES (422,'','헤이미키 이중지후드티','FREE',57000,55000,2000,STR_TO_DATE('19/10/20','%y/%m/%d'),'보라색',3000,STR_TO_DATE('19/10/27','%y/%m/%d'),'top','',STR_TO_DATE('21/07/06','%y/%m/%d'));
+INSERT INTO t_shopping_goods(goods_id,goods_sort,goods_title,goods_publisher,goods_price,goods_sales_price,goods_point,goods_published_date,goods_color,goods_delivery_price,goods_delivery_date,goods_status,goods_intro,goods_credate) VALUES (423,'','영앤리치 나그랑 후드집업','FREE',42000,40000,1000,STR_TO_DATE('19/10/20','%y/%m/%d'),'블랙',3000,STR_TO_DATE('19/10/27','%y/%m/%d'),'top','',STR_TO_DATE('21/07/06','%y/%m/%d'));
+INSERT INTO t_shopping_goods(goods_id,goods_sort,goods_title,goods_publisher,goods_price,goods_sales_price,goods_point,goods_published_date,goods_color,goods_delivery_price,goods_delivery_date,goods_status,goods_intro,goods_credate) VALUES (424,'','플렌티 후드집업','FREE',38000,30000,1000,STR_TO_DATE('19/10/20','%y/%m/%d'),'블루',3000,STR_TO_DATE('19/10/27','%y/%m/%d'),'top','',STR_TO_DATE('21/07/06','%y/%m/%d'));
+INSERT INTO t_shopping_goods(goods_id,goods_sort,goods_title,goods_publisher,goods_price,goods_sales_price,goods_point,goods_published_date,goods_color,goods_delivery_price,goods_delivery_date,goods_status,goods_intro,goods_credate) VALUES (425,'','브랜뉴 오버핏후드티','FREE',32000,28000,1000,STR_TO_DATE('19/10/20','%y/%m/%d'),'오렌지',3000,STR_TO_DATE('19/10/27','%y/%m/%d'),'top','',STR_TO_DATE('21/07/06','%y/%m/%d'));
+INSERT INTO t_shopping_goods(goods_id,goods_sort,goods_title,goods_publisher,goods_price,goods_sales_price,goods_point,goods_published_date,goods_color,goods_delivery_price,goods_delivery_date,goods_status,goods_intro,goods_credate) VALUES (511,'','알베르 벌룬밴딩팬츠','FREE',34000,30000,1000,STR_TO_DATE('19/10/20','%y/%m/%d'),'카키',3000,STR_TO_DATE('19/10/27','%y/%m/%d'),'bottom','',STR_TO_DATE('21/07/06','%y/%m/%d'));
+INSERT INTO t_shopping_goods(goods_id,goods_sort,goods_title,goods_publisher,goods_price,goods_sales_price,goods_point,goods_published_date,goods_color,goods_delivery_price,goods_delivery_date,goods_status,goods_intro,goods_credate) VALUES (512,'','벨지스 조거밴딩팬츠 814','FREE',29000,25000,1000,STR_TO_DATE('19/10/20','%y/%m/%d'),'블랙',3000,STR_TO_DATE('19/10/27','%y/%m/%d'),'bottom','',STR_TO_DATE('21/07/06','%y/%m/%d'));
+INSERT INTO t_shopping_goods(goods_id,goods_sort,goods_title,goods_publisher,goods_price,goods_sales_price,goods_point,goods_published_date,goods_color,goods_delivery_price,goods_delivery_date,goods_status,goods_intro,goods_credate) VALUES (513,'','우모 오리털 옆밴딩팬츠','FREE',84000,80000,2000,STR_TO_DATE('19/10/20','%y/%m/%d'),'그레이',3000,STR_TO_DATE('19/10/27','%y/%m/%d'),'bottom','',STR_TO_DATE('21/07/06','%y/%m/%d'));
+INSERT INTO t_shopping_goods(goods_id,goods_sort,goods_title,goods_publisher,goods_price,goods_sales_price,goods_point,goods_published_date,goods_color,goods_delivery_price,goods_delivery_date,goods_status,goods_intro,goods_credate) VALUES (514,'','N브레이븐 10수면스판 밴딩팬츠','FREE',32000,30000,1000,STR_TO_DATE('19/10/20','%y/%m/%d'),'네이비',3000,STR_TO_DATE('19/10/27','%y/%m/%d'),'bottom','',STR_TO_DATE('21/07/06','%y/%m/%d'));
+INSERT INTO t_shopping_goods(goods_id,goods_sort,goods_title,goods_publisher,goods_price,goods_sales_price,goods_point,goods_published_date,goods_color,goods_delivery_price,goods_delivery_date,goods_status,goods_intro,goods_credate) VALUES (515,'','코리튼 체크기모 밴딩조거팬츠','FREE',46000,46000,1000,STR_TO_DATE('19/10/20','%y/%m/%d'),'화이트',3000,STR_TO_DATE('19/10/27','%y/%m/%d'),'bottom','',STR_TO_DATE('21/07/06','%y/%m/%d'));
+INSERT INTO t_shopping_goods(goods_id,goods_sort,goods_title,goods_publisher,goods_price,goods_sales_price,goods_point,goods_published_date,goods_color,goods_delivery_price,goods_delivery_date,goods_status,goods_intro,goods_credate) VALUES (602,'','코네마맴피스 첼시부츠','FREE',46000,45000,1000,STR_TO_DATE('19/10/20','%y/%m/%d'),'블랙',3000,STR_TO_DATE('19/10/27','%y/%m/%d'),'shoes','',STR_TO_DATE('21/07/06','%y/%m/%d'));
+INSERT INTO t_shopping_goods(goods_id,goods_sort,goods_title,goods_publisher,goods_price,goods_sales_price,goods_point,goods_published_date,goods_color,goods_delivery_price,goods_delivery_date,goods_status,goods_intro,goods_credate) VALUES (603,'','위지 로우워커(레고)','FREE',44000,44000,1000,STR_TO_DATE('19/10/20','%y/%m/%d'),'갈색',3000,STR_TO_DATE('19/10/27','%y/%m/%d'),'shoes','',STR_TO_DATE('21/07/06','%y/%m/%d'));
+INSERT INTO t_shopping_goods(goods_id,goods_sort,goods_title,goods_publisher,goods_price,goods_sales_price,goods_point,goods_published_date,goods_color,goods_delivery_price,goods_delivery_date,goods_status,goods_intro,goods_credate) VALUES (604,'','쇼린 워커(머스크천연가죽)','FREE',78000,72000,2000,STR_TO_DATE('19/10/20','%y/%m/%d'),'블랙',3000,STR_TO_DATE('19/10/27','%y/%m/%d'),'shoes','',STR_TO_DATE('21/07/06','%y/%m/%d'));
+INSERT INTO t_shopping_goods(goods_id,goods_sort,goods_title,goods_publisher,goods_price,goods_sales_price,goods_point,goods_published_date,goods_color,goods_delivery_price,goods_delivery_date,goods_status,goods_intro,goods_credate) VALUES (605,'','콘이지 사막워커','FREE',48000,45000,1000,STR_TO_DATE('19/10/20','%y/%m/%d'),'블랙',3000,STR_TO_DATE('19/10/27','%y/%m/%d'),'shoes','',STR_TO_DATE('21/07/06','%y/%m/%d'));
+INSERT INTO t_shopping_goods(goods_id,goods_sort,goods_title,goods_publisher,goods_price,goods_sales_price,goods_point,goods_published_date,goods_color,goods_delivery_price,goods_delivery_date,goods_status,goods_intro,goods_credate) VALUES (606,'','메이어 워커(팬텀)','FREE',49000,42000,1000,STR_TO_DATE('19/10/20','%y/%m/%d'),'블랙',3000,STR_TO_DATE('19/10/27','%y/%m/%d'),'shoes','',STR_TO_DATE('21/07/06','%y/%m/%d'));
+INSERT INTO t_shopping_goods(goods_id,goods_sort,goods_title,goods_publisher,goods_price,goods_sales_price,goods_point,goods_published_date,goods_color,goods_delivery_price,goods_delivery_date,goods_status,goods_intro,goods_credate) VALUES (607,'','덴버 워커','FREE',45000,45000,1000,STR_TO_DATE('19/10/20','%y/%m/%d'),'블랙',3000,STR_TO_DATE('19/10/27','%y/%m/%d'),'shoes','',STR_TO_DATE('21/07/06','%y/%m/%d'));
+
+-- 이미지 상세 테이블 --
+INSERT INTO t_goods_detail_image(image_id,goods_id,fileName,reg_id,fileType,creDate) VALUES (301,314,'스턴트 코튼야상.jpg','admin','main_image', STR_TO_DATE('21/11/14','%y/%m/%d'));
+INSERT INTO t_goods_detail_image(image_id, goods_id, fileName, reg_id, fileType, creDate) VALUES (302,315,'신기루 라쿤 오리털 야상.jpg','admin','main_image', STR_TO_DATE('21/11/14','%y/%m/%d'));
+INSERT INTO t_goods_detail_image(image_id, goods_id, fileName, reg_id, fileType, creDate) VALUES (303,316,'스너그 양털 양면점퍼.jpg','admin','main_image', STR_TO_DATE('21/11/14','%y/%m/%d'));
+INSERT INTO t_goods_detail_image(image_id, goods_id, fileName, reg_id, fileType, creDate) VALUES (304,317,'라리나그 히든버튼코트.jpg','admin','main_image', STR_TO_DATE('21/11/14','%y/%m/%d'));
+INSERT INTO t_goods_detail_image(image_id, goods_id, fileName, reg_id, fileType, creDate) VALUES (305,318,'카길 보아털 후리스집업 2160.jpg','admin','main_image', STR_TO_DATE('21/11/14','%y/%m/%d'));
+INSERT INTO t_goods_detail_image(image_id, goods_id, fileName, reg_id, fileType, creDate) VALUES (306,319,'카소그 테디베어코트.jpg','admin','main_image', STR_TO_DATE('21/11/14','%y/%m/%d'));
+INSERT INTO t_goods_detail_image(image_id, goods_id, fileName, reg_id, fileType, creDate) VALUES (307,421,'콘트라 배색 양털후드집업.jpg','admin','main_image', STR_TO_DATE('21/11/14','%y/%m/%d'));
+INSERT INTO t_goods_detail_image(image_id, goods_id, fileName, reg_id, fileType, creDate) VALUES (308,422,'헤이미키 이중지후드티.jpg','admin','main_image', STR_TO_DATE('21/11/14','%y/%m/%d'));
+INSERT INTO t_goods_detail_image(image_id, goods_id, fileName, reg_id, fileType, creDate) VALUES (309,423,'영앤리치 나그랑 후드집업.jpg','admin','main_image', STR_TO_DATE('21/11/14','%y/%m/%d'));
+INSERT INTO t_goods_detail_image(image_id, goods_id, fileName, reg_id, fileType, creDate) VALUES (310,424,'플렌티 후드집업.jpg','admin','main_image', STR_TO_DATE('21/11/14','%y/%m/%d'));
+INSERT INTO t_goods_detail_image(image_id, goods_id, fileName, reg_id, fileType, creDate) VALUES (311,425,'브랜뉴 오버핏후드티.jpg','admin','main_image', STR_TO_DATE('21/11/14','%y/%m/%d'));
+INSERT INTO t_goods_detail_image(image_id, goods_id, fileName, reg_id, fileType, creDate) VALUES (312,511,'알베르 벌룬밴딩팬츠.jpg','admin','main_image', STR_TO_DATE('21/11/14','%y/%m/%d'));
+INSERT INTO t_goods_detail_image(image_id, goods_id, fileName, reg_id, fileType, creDate) VALUES (313,512,'벨지스 조거밴딩팬츠 814.jpg','admin','main_image', STR_TO_DATE('21/11/14','%y/%m/%d'));
+INSERT INTO t_goods_detail_image(image_id, goods_id, fileName, reg_id, fileType, creDate) VALUES (314,513,'우모 오리털 옆밴딩팬츠.jpg','admin','main_image', STR_TO_DATE('21/11/14','%y/%m/%d'));
+INSERT INTO t_goods_detail_image(image_id, goods_id, fileName, reg_id, fileType, creDate) VALUES (315,514,'N브레이븐 10수면스판 밴딩팬츠.jpg','admin','main_image', STR_TO_DATE('21/11/14','%y/%m/%d'));
+INSERT INTO t_goods_detail_image(image_id, goods_id, fileName, reg_id, fileType, creDate) VALUES (316,515,'코리튼 체크기모 밴딩조거팬츠.jpg','admin','main_image', STR_TO_DATE('21/11/14','%y/%m/%d'));
+INSERT INTO t_goods_detail_image(image_id, goods_id, fileName, reg_id, fileType, creDate) VALUES (317,602,'코네마맴피스 첼시부츠.jpg','admin','main_image', STR_TO_DATE('21/11/14','%y/%m/%d'));
+INSERT INTO t_goods_detail_image(image_id, goods_id, fileName, reg_id, fileType, creDate) VALUES (318,603,'위지 로우워커(레고).jpg','admin','main_image', STR_TO_DATE('21/11/14','%y/%m/%d'));
+INSERT INTO t_goods_detail_image(image_id, goods_id, fileName, reg_id, fileType, creDate) VALUES (319,604,'쇼린 워커(머스크천연가죽).jpg','admin','main_image', STR_TO_DATE('21/11/14','%y/%m/%d'));
+INSERT INTO t_goods_detail_image(image_id, goods_id, fileName, reg_id, fileType, creDate) VALUES (320,605,'콘이지 사막워커.jpg','admin','main_image', STR_TO_DATE('21/11/14','%y/%m/%d'));
+INSERT INTO t_goods_detail_image(image_id, goods_id, fileName, reg_id, fileType, creDate) VALUES (321,606,'메이어 워커(팬텀).jpg','admin','main_image', STR_TO_DATE('21/11/14','%y/%m/%d'));
+INSERT INTO t_goods_detail_image(image_id, goods_id, fileName, reg_id, fileType, creDate) VALUES (322,607,'덴버 워커.jpg','admin','main_image', STR_TO_DATE('21/11/14','%y/%m/%d'));
+
+INSERT INTO t_goods_detail_image(image_id, goods_id, fileName, reg_id, fileType, creDate) VALUES (401,314,'스턴트 코튼야상_상세.jpg','admin','detail_image', STR_TO_DATE('21/11/14','%y/%m/%d'));
+INSERT INTO t_goods_detail_image(image_id, goods_id, fileName, reg_id, fileType, creDate) VALUES (402,315,'신기루 라쿤 오리털 야상_상세.jpg','admin','detail_image', STR_TO_DATE('21/11/14','%y/%m/%d'));
+INSERT INTO t_goods_detail_image(image_id, goods_id, fileName, reg_id, fileType, creDate) VALUES (403,316,'스너그 양털 양면점퍼_상세.jpg','admin','detail_image', STR_TO_DATE('21/11/14','%y/%m/%d'));
+INSERT INTO t_goods_detail_image(image_id, goods_id, fileName, reg_id, fileType, creDate) VALUES (404,317,'라리나그 히든버튼코트_상세.jpg','admin','detail_image', STR_TO_DATE('21/11/14','%y/%m/%d'));
+INSERT INTO t_goods_detail_image(image_id, goods_id, fileName, reg_id, fileType, creDate) VALUES (405,318,'카길 보아털 후리스집업 2160_상세.jpg','admin','detail_image', STR_TO_DATE('21/11/14','%y/%m/%d'));
+INSERT INTO t_goods_detail_image(image_id, goods_id, fileName, reg_id, fileType, creDate) VALUES (406,319,'카소그 테디베어코트_상세.jpg','admin','detail_image', STR_TO_DATE('21/11/14','%y/%m/%d'));
+INSERT INTO t_goods_detail_image(image_id, goods_id, fileName, reg_id, fileType, creDate) VALUES (407,421,'콘트라 배색 양털후드집업_상세.jpg','admin','detail_image', STR_TO_DATE('21/11/14','%y/%m/%d'));
+INSERT INTO t_goods_detail_image(image_id, goods_id, fileName, reg_id, fileType, creDate) VALUES (408,422,'헤이미키 이중지후드티_상세.jpg','admin','detail_image', STR_TO_DATE('21/11/14','%y/%m/%d'));
+INSERT INTO t_goods_detail_image(image_id, goods_id, fileName, reg_id, fileType, creDate) VALUES (409,423,'영앤리치 나그랑 후드집업_상세.jpg','admin','detail_image', STR_TO_DATE('21/11/14','%y/%m/%d'));
+INSERT INTO t_goods_detail_image(image_id, goods_id, fileName, reg_id, fileType, creDate) VALUES (410,424,'플렌티 후드집업_상세.jpg','admin','detail_image', STR_TO_DATE('21/11/14','%y/%m/%d'));
+INSERT INTO t_goods_detail_image(image_id, goods_id, fileName, reg_id, fileType, creDate) VALUES (411,425,'브랜뉴 오버핏후드티_상세.jpg','admin','detail_image', STR_TO_DATE('21/11/14','%y/%m/%d'));
+INSERT INTO t_goods_detail_image(image_id, goods_id, fileName, reg_id, fileType, creDate) VALUES (412,511,'알베르 벌룬밴딩팬츠_상세.jpg','admin','detail_image', STR_TO_DATE('21/11/14','%y/%m/%d'));
+INSERT INTO t_goods_detail_image(image_id, goods_id, fileName, reg_id, fileType, creDate) VALUES (413,512,'벨지스 조거밴딩팬츠 814_상세.jpg','admin','detail_image', STR_TO_DATE('21/11/14','%y/%m/%d'));
+INSERT INTO t_goods_detail_image(image_id, goods_id, fileName, reg_id, fileType, creDate) VALUES (414,513,'우모 오리털 옆밴딩팬츠_상세.jpg','admin','detail_image', STR_TO_DATE('21/11/14','%y/%m/%d'));
+INSERT INTO t_goods_detail_image(image_id, goods_id, fileName, reg_id, fileType, creDate) VALUES (415,514,'N브레이븐 10수면스판 밴딩팬츠_상세.jpg','admin','detail_image', STR_TO_DATE('21/11/14','%y/%m/%d'));
+INSERT INTO t_goods_detail_image(image_id, goods_id, fileName, reg_id, fileType, creDate) VALUES (416,515,'코리튼 체크기모 밴딩조거팬츠_상세.jpg','admin','detail_image', STR_TO_DATE('21/11/14','%y/%m/%d'));
+INSERT INTO t_goods_detail_image(image_id, goods_id, fileName, reg_id, fileType, creDate) VALUES (417,602,'코네마맴피스 첼시부츠_상세.jpg','admin','detail_image', STR_TO_DATE('21/11/14','%y/%m/%d'));
+INSERT INTO t_goods_detail_image(image_id, goods_id, fileName, reg_id, fileType, creDate) VALUES (418,603,'위지 로우워커(레고)_상세.jpg','admin','detail_image', STR_TO_DATE('21/11/14','%y/%m/%d'));
+INSERT INTO t_goods_detail_image(image_id, goods_id, fileName, reg_id, fileType, creDate) VALUES (419,604,'쇼린 워커(머스크천연가죽)_상세.jpg','admin','detail_image', STR_TO_DATE('21/11/14','%y/%m/%d'));
+INSERT INTO t_goods_detail_image(image_id, goods_id, fileName, reg_id, fileType, creDate) VALUES (420,605,'콘이지 사막워커_상세.jpg','admin','detail_image', STR_TO_DATE('21/11/14','%y/%m/%d'));
+INSERT INTO t_goods_detail_image(image_id, goods_id, fileName, reg_id, fileType, creDate) VALUES (421,606,'메이어 워커(팬텀)_상세.jpg','admin','detail_image', STR_TO_DATE('21/11/14','%y/%m/%d'));
+INSERT INTO t_goods_detail_image(image_id, goods_id, fileName, reg_id, fileType, creDate) VALUES (422,607,'덴버 워커_상세.jpg','admin','detail_image', STR_TO_DATE('21/11/14','%y/%m/%d'));

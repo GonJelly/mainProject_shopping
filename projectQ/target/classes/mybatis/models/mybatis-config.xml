@@ -4,5 +4,7 @@
 <configuration>
 	<typeAliases>
 		<typeAlias type="com.projectQ.conf.test.TestVO" alias="TestVO"/>
+		<typeAlias type="com.projectQ.conf.goods.vo.GoodsVO" alias="goodsVO" />
+		<typeAlias type="com.projectQ.conf.goods.vo.ImageFileVO" alias="imageVO" />
 	</typeAliases>
 </configuration>

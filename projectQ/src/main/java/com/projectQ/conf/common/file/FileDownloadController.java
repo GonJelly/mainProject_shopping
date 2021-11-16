@@ -16,7 +16,7 @@ import net.coobird.thumbnailator.Thumbnails;
 @Controller
 public class FileDownloadController {
 	
-	private static final String CURR_IMAGE_REPO_PATH = "C:\\shopping\\file_repo";
+	private static final String CURR_IMAGE_REPO_PATH = "C:\\FREE\\file_repo";
 	
 	// 파일 다운로드 클래스
 	@RequestMapping(value="/download")
@@ -54,7 +54,7 @@ public class FileDownloadController {
 		int lastIndex = fileName.lastIndexOf(".");
 		String imageFileName = fileName.substring(0,lastIndex);
 		if(image.exists()) {
-			Thumbnails.of(image).size(121, 154).outputFormat("png").toOutputStream(out);
+			Thumbnails.of(image).size(152, 194).outputFormat("png").toOutputStream(out);
 		}
 		byte[] buffer = new byte[1024 * 8];
 		out.write(buffer);
