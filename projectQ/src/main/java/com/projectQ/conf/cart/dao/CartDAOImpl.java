@@ -1,0 +1,50 @@
+package com.projectQ.conf.cart.dao;
+
+import java.util.List;
+
+import org.apache.ibatis.session.SqlSession;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
+import org.springframework.stereotype.Repository;
+
+import com.projectQ.conf.cart.vo.CartVO;
+import com.projectQ.conf.goods.vo.GoodsVO;
+
+@Repository("cartDAO")
+public class CartDAOImpl implements CartDAO{
+	
+	@Autowired
+	private SqlSession sqlSession;
+	
+	public List<CartVO> selectCartList(CartVO cartVO) throws DataAccessException{
+		List<CartVO> cartList=(List)sqlSession.selectList("mapper.cart.selectCartList",cartVO);
+		return cartList;
+	}
+	public List<GoodsVO> selectGoodsList(List<CartVO> cartList) throws DataAccessException{
+		List<GoodsVO>myGoodsList;
+		myGoodsList = sqlSession.selectList("mapper.cart.selectGoodsList",cartList);
+		return myGoodsList;
+	
+}
+	//이미 장바구니에 추가된 상품인지 조회
+	public boolean selectCountInCart(CartVO cartVO) throws DataAccessException{
+		String result=sqlSession.selectOne("mapper.cart.selectCountInCart",cartVO);
+		return Boolean.parseBoolean(result);
+	}
+	//장바구니에 추가
+	public void insertGoodsInCart(CartVO cartVO) throws DataAccessException{
+		int cart_id=selectMaxCartId();
+		cartVO.setCart_id(cart_id);
+		sqlSession.insert("mapper.cart.insertGoodsInCart",cartVO);
+	}
+	public void updateCartGoodsQty(CartVO cartVO) throws DataAccessException{
+		sqlSession.delete("mapper.cartdeleteCartGoods", cartVO);
+	}
+	public void deleteCartGoods(int cart_id) throws DataAccessException{
+		sqlSession.delete("mapper.cart.deleteCartGoods",cart_id);
+	}
+	private int selectMaxCartId() throws DataAccessException{
+		int cart_id=sqlSession.selectOne("mapper.cart.selectMaxCartId");
+		return cart_id;
+	}
+}

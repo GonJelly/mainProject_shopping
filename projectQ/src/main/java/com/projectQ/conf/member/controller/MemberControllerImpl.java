@@ -27,7 +27,7 @@ public class MemberControllerImpl extends baseController implements MemberContro
 	@Autowired
 	private MemberService memberService;
 	@Autowired
-	private MemberVO memberVO;
+	MemberVO memberVO;
 	
 	@Override
 	@RequestMapping(value="/login.do" ,method = RequestMethod.POST)
