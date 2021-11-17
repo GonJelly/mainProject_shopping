@@ -7,6 +7,7 @@
 		<typeAlias type="com.projectQ.conf.member.vo.MemberVO" alias="memberVO" />
    	 	<typeAlias type="com.projectQ.conf.cart.vo.CartVO" alias="cartVO" />
 		<typeAlias type="com.projectQ.conf.test.TestVO" alias="TestVO"/>
+		<typeAlias type="com.projectQ.conf.order.vo.OrderVO" alias="orderVO" />
 		<typeAlias type="com.projectQ.conf.goods.vo.GoodsVO" alias="goodsVO" />
 		<typeAlias type="com.projectQ.conf.goods.vo.ImageFileVO" alias="imageVO" />
 		<typeAlias type="com.projectQ.conf.member.vo.MemberVO" alias="memberVO" />
