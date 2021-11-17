@@ -37,7 +37,7 @@
 	
 	<select id="listMember" resultMap="memberResult" parameterType="java.util.HashMap">
 		select * from (
-			    select rowNum as recNum,t.*
+			    select 'rowNum' as recNum,t.*
 			       from (
 			              select  *  from t_shopping_member 
 			              where date_format(joinDate,'%Y-%m-%d')  between #{beginDate} and #{endDate}
