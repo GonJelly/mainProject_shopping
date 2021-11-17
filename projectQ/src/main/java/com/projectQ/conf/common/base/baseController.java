@@ -20,26 +20,27 @@ import com.projectQ.conf.goods.vo.ImageFileVO;
 
 public abstract class baseController {
 	
+
 	private static final String CURR_IMAGE_REPO_PATH = "C:\\FREE\\file_repo";
 	
-	// °æ·Î¿¡ ÆÄÀÏ ÀúÀåÇÏ±â , »ó¼Ó½Ã¿¡¸¸!!
+	// ï¿½ï¿½Î¿ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï±ï¿½ , ï¿½ï¿½Ó½Ã¿ï¿½ï¿½ï¿½!!
 	protected List<ImageFileVO> upload(MultipartHttpServletRequest multipartRequest,HttpServletResponse response) throws Exception{
 		List<ImageFileVO> fileList = new ArrayList<ImageFileVO>();
 		Iterator<String> fileNames = multipartRequest.getFileNames();
 		while(fileNames.hasNext()) {
 			ImageFileVO imageFileVO = new ImageFileVO();
 			String fileName = fileNames.next();
-			imageFileVO.setFileType(fileName); // ÆÄÀÏ Å¸ÀÔÀúÀå
+			imageFileVO.setFileType(fileName); // ï¿½ï¿½ï¿½ï¿½ Å¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 			MultipartFile mFile = multipartRequest.getFile(fileName);
 			String originalFileName = mFile.getOriginalFilename();
-			imageFileVO.setFileName(originalFileName); // ÆÄÀÏ ÀÌ¸§ÀúÀå
+			imageFileVO.setFileName(originalFileName); // ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¸ï¿½ï¿½ï¿½ï¿½ï¿½
 			fileList.add(imageFileVO);
 			
 			File file = new File(CURR_IMAGE_REPO_PATH + "\\" + fileName);
-			if(mFile.getSize() != 0) { //ÆÄÀÏ »çÀÌÁî°¡ 0ÀÌ ¾Æ´Ï¸é!!
-				if(! file.exists()) {    // ÆÄÀÏÀÌ Á¸ÀçÇÏÁö ¾ÊÀ¸¸é 
-					if(file.getParentFile().mkdirs()) { // °æ·Î¿¡ ÇØ´çÇÏ´Â µð·ºÅä¸®µéÀ» »ý¼º
-						file.createNewFile(); // ÀÌÈÄ ÆÄÀÏ »ý¼º
+			if(mFile.getSize() != 0) { //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½î°¡ 0ï¿½ï¿½ ï¿½Æ´Ï¸ï¿½!!
+				if(! file.exists()) {    // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 
+					if(file.getParentFile().mkdirs()) { // ï¿½ï¿½Î¿ï¿½ ï¿½Ø´ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ä¸®ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+						file.createNewFile(); // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 					}
 				}
 				mFile.transferTo(new File(CURR_IMAGE_REPO_PATH + "\\" + "temp" + "\\" + originalFileName));
@@ -49,7 +50,7 @@ public abstract class baseController {
 		return fileList;
 	}
 	
-	// ÆÄÀÏ »èÁ¦ Å¬·¡½º
+	// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Å¬ï¿½ï¿½ï¿½ï¿½
 	private void deleteFile(String fileName) {
 		File file = new File(CURR_IMAGE_REPO_PATH + "\\" + fileName);
 		try {
@@ -59,7 +60,7 @@ public abstract class baseController {
 		}
 	}
 	
-	// *.do·Î ³¡³ª´Â ¸ðµç request(¿äÃ») Ã³¸®ÇÏ´Â Å¬·¡½º(¸ðµâ) , »ó¼Ó½Ã¿¡¸¸!!
+	// *.doï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ request(ï¿½ï¿½Ã») Ã³ï¿½ï¿½ï¿½Ï´ï¿½ Å¬ï¿½ï¿½ï¿½ï¿½(ï¿½ï¿½ï¿½) , ï¿½ï¿½Ó½Ã¿ï¿½ï¿½ï¿½!!
 	@RequestMapping(value="/*.do" , method = {RequestMethod.GET,RequestMethod.POST})
 	protected ModelAndView viewForm(HttpServletRequest request,HttpServletResponse response) throws Exception{
 		String viewName = (String) request.getAttribute("viewName");
@@ -67,7 +68,7 @@ public abstract class baseController {
 		return mav;
 	}
 	
-	// ³¯Â¥°è»ê Å¬·¡½º
+	// ï¿½ï¿½Â¥ï¿½ï¿½ï¿½ Å¬ï¿½ï¿½ï¿½ï¿½
 	protected String calcSearchPeriod(String fixedSearchPeriod) {
 		
 		String beginDate = null;
@@ -79,7 +80,7 @@ public abstract class baseController {
 		String beginMonth = null;
 		String beginDay = null;
 		DecimalFormat df = new DecimalFormat("00");
-		Calendar cal = Calendar.getInstance(); //´Þ·Â API
+		Calendar cal = Calendar.getInstance(); //ï¿½Þ·ï¿½ API
 		
 		endYear = Integer.toString(cal.get(Calendar.YEAR));
 		endMonth = df.format(cal.get(Calendar.MONTH) + 1);

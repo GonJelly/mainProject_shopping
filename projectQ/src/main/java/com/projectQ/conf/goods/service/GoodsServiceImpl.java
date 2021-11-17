@@ -1,5 +1,6 @@
 package com.projectQ.conf.goods.service;
 
+<<<<<<< HEAD
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -66,5 +67,4 @@ public class GoodsServiceImpl implements GoodsService{
 		
 		return goodsList;
 	}
-
 }

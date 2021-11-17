@@ -13,4 +13,5 @@ public interface GoodsService {
 	public Map goodsDetailList(String goods_id) throws DataAccessException;
 	public List<String> keywordSearch(String keyword) throws DataAccessException;
 	public List<GoodsVO> goodsSearch(String searchWord) throws DataAccessException;
+
 }

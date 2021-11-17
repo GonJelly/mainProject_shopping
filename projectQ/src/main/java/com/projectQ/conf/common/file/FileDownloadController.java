@@ -17,8 +17,9 @@ import net.coobird.thumbnailator.Thumbnails;
 public class FileDownloadController {
 	
 	private static final String CURR_IMAGE_REPO_PATH = "C:\\FREE\\file_repo";
+
 	
-	// ÆÄÀÏ ´Ù¿î·Îµå Å¬·¡½º
+	// ï¿½ï¿½ï¿½ï¿½ ï¿½Ù¿ï¿½Îµï¿½ Å¬ï¿½ï¿½ï¿½ï¿½
 	@RequestMapping(value="/download")
 	protected void download(@RequestParam("fileName") String fileName,
 								@RequestParam("goods_id") String goods_id,
@@ -42,7 +43,7 @@ public class FileDownloadController {
 		out.close();
 	}
 	
-	// ½æ³×ÀÏ ±â´ÉÀ» ±¸Çö Å¬·¡½º
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Å¬ï¿½ï¿½ï¿½ï¿½
 	@RequestMapping(value="/thumbnails.do")
 	protected void thumbnails(@RequestParam("fileName") String fileName,
 								@RequestParam("goods_id") String goods_id,
