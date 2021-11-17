@@ -2,7 +2,11 @@ package com.projectQ.conf.member.vo;
 
 import org.springframework.stereotype.Component;
 
+<<<<<<< HEAD
 @Component
+=======
+@Component("memberVO")
+>>>>>>> addmember
 public class MemberVO {
 	private String member_id;
 	private String member_pw;
@@ -28,7 +32,6 @@ public class MemberVO {
 	private String namujiAddress;
 	private String joinDate;
 	private String del_yn;
-	
 	public String getMember_id() {
 		return member_id;
 	}
@@ -173,5 +176,8 @@ public class MemberVO {
 	public void setDel_yn(String del_yn) {
 		this.del_yn = del_yn;
 	}
-
+	
+	
+	
+	
 }
