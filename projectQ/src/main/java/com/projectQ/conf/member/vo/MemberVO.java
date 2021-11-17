@@ -2,11 +2,7 @@ package com.projectQ.conf.member.vo;
 
 import org.springframework.stereotype.Component;
 
-<<<<<<< HEAD
-@Component
-=======
 @Component("memberVO")
->>>>>>> addmember
 public class MemberVO {
 	private String member_id;
 	private String member_pw;
@@ -16,9 +12,9 @@ public class MemberVO {
 	private String member_birth_m;
 	private String member_birth_d;
 	private String member_birth_gn;
-	private String te1;
-	private String te2;
-	private String te3;
+	private String tel1;
+	private String tel2;
+	private String tel3;
 	private String hp1;
 	private String hp2;
 	private String hp3;
@@ -80,23 +76,23 @@ public class MemberVO {
 	public void setMember_birth_gn(String member_birth_gn) {
 		this.member_birth_gn = member_birth_gn;
 	}
-	public String getTe1() {
-		return te1;
+	public String getTel1() {
+		return tel1;
 	}
-	public void setTe1(String te1) {
-		this.te1 = te1;
+	public void setTel1(String tel1) {
+		this.tel1 = tel1;
 	}
-	public String getTe2() {
-		return te2;
+	public String getTel2() {
+		return tel2;
 	}
-	public void setTe2(String te2) {
-		this.te2 = te2;
+	public void setTel2(String tel2) {
+		this.tel2 = tel2;
 	}
-	public String getTe3() {
-		return te3;
+	public String getTel3() {
+		return tel3;
 	}
-	public void setTe3(String te3) {
-		this.te3 = te3;
+	public void setTel3(String tel3) {
+		this.tel3 = tel3;
 	}
 	public String getHp1() {
 		return hp1;

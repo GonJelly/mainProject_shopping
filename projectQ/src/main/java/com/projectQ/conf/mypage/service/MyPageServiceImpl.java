@@ -8,7 +8,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.projectQ.conf.member.vo.MemberVO;
 import com.projectQ.conf.mypage.dao.MyPageDAO;
+import com.projectQ.conf.order.vo.OrderVO;
 
 @Service("myPAgeService")
 @Transactional(propagation = Propagation.REQUIRED)

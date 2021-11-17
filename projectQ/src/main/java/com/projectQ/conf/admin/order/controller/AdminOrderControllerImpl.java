@@ -18,11 +18,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.projectQ.conf.admin.order.service.AdminOrderService;
+import com.projectQ.conf.common.base.baseController;
+import com.projectQ.conf.order.vo.OrderVO;
 
 
 @Controller("adminOrderController")
 @RequestMapping(value = "/admin/order")
-public class AdminOrderControllerImpl implements AdminOrderController {
+public class AdminOrderControllerImpl extends baseController implements AdminOrderController {
 	@Autowired
 	AdminOrderService adminOrderService;
 	
@@ -38,7 +40,7 @@ public class AdminOrderControllerImpl implements AdminOrderController {
 		String pageNum = dateMap.get("pageNum");
 		String beginDate=null, endDate=null;
 		
-		String [] tempDate=calcSearchPeriod(fixedSearchPeriod).split(",");
+		String [] tempDate= calcSearchPeriod(fixedSearchPeriod).split(",");
 		beginDate=tempDate[0];
 		endDate=tempDate[1];
 		dateMap.put("beginDate", beginDate);

@@ -24,7 +24,7 @@ public abstract class baseController {
 	private static final String CURR_IMAGE_REPO_PATH = "C:\\FREE\\file_repo";
 	
 	// ��ο� ���� �����ϱ� , ��ӽÿ���!!
-	protected List<ImageFileVO> upload(MultipartHttpServletRequest multipartRequest,HttpServletResponse response) throws Exception{
+	protected List<ImageFileVO> upload(MultipartHttpServletRequest multipartRequest) throws Exception{
 		List<ImageFileVO> fileList = new ArrayList<ImageFileVO>();
 		Iterator<String> fileNames = multipartRequest.getFileNames();
 		while(fileNames.hasNext()) {

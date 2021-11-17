@@ -24,7 +24,7 @@ import com.projectQ.conf.member.vo.MemberVO;
 @RequestMapping(value="/cart")
 public class CartControllerImpl extends baseController implements CartController{
 	@Autowired
-	private CartService cartService;
+	CartService cartService;
 	@Autowired
 	CartVO cartVO;
 	@Autowired
@@ -33,25 +33,29 @@ public class CartControllerImpl extends baseController implements CartController
 	@RequestMapping(value="/myCartList.do", method = RequestMethod.GET)
 	public ModelAndView myCartMain(HttpServletRequest request, HttpServletResponse response) throws Exception{
 		String viewName = (String)request.getAttribute("viewName");
-		ModelAndView mav = new ModelAndView("viewName");
+		ModelAndView mav = new ModelAndView(viewName);
 		HttpSession session = request.getSession();
 		MemberVO memberVO = (MemberVO)session.getAttribute("memberInfo");
 		String member_id = memberVO.getMember_id();
 		cartVO.setMember_id(member_id);
 		//장바구니 페이지에 표시할 상품정보를 조회
-		Map<String, List> cartMap = cartService.myCartList(cartVO);
+		Map<String,List> cartMap = cartService.myCartList(cartVO);
 		//장바구니목록을 세션에 저장
 		session.setAttribute("cartMap", cartMap);
 		return mav;
 	}
-	@RequestMapping(value="/addGoodsInCart.do", method = RequestMethod.POST,
-												produces = "application/text; charset=utf8")
-											//전송된 상품번호를 받음
-	public @ResponseBody String addGoodsInCart(@RequestParam("goods_id") int goods_id,
-											HttpServletRequest request, HttpServletResponse response) throws Exception{
-		HttpSession session=request.getSession();
+	//전송된 상품번호를 받음
+	@RequestMapping(value="/addGoodsInCart.do", method = RequestMethod.POST,produces="application/text; charset=utf-8")
+	public @ResponseBody String addGoodsInCart(@RequestParam("goods_id") int goods_id,HttpServletRequest request, HttpServletResponse response) throws Exception{
+		HttpSession session= request.getSession();
+		
+		if(session.getAttribute("memberInfo") == null || session.getAttribute("memberInfo").equals("")) {
+			return "alertLogin";
+		}
+		
 		memberVO=(MemberVO)session.getAttribute("memberInfo");
-		String member_id=memberVO.getMember_id();
+		String member_id = memberVO.getMember_id();
+
 		cartVO.setMember_id(member_id);
 		cartVO.setGoods_id(goods_id);
 		//상품번호가 장바구니 테이블에 있는지 조회

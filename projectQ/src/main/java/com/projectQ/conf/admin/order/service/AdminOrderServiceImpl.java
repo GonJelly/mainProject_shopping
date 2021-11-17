@@ -11,6 +11,8 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.projectQ.conf.admin.order.dao.AdminOrderDAO;
+import com.projectQ.conf.member.vo.MemberVO;
+import com.projectQ.conf.order.vo.OrderVO;
 
 @Service("adminOrderService")
 @Transactional(propagation=Propagation.REQUIRED)

@@ -18,18 +18,21 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.projectQ.conf.common.base.baseController;
+import com.projectQ.conf.member.vo.MemberVO;
 import com.projectQ.conf.mypage.service.MyPageService;
+import com.projectQ.conf.order.vo.OrderVO;
 
 @Controller("myPageController")
-@RequestMapping(value="/myPage")
-public class MyPageControllerImpl implements MyPageController {
+@RequestMapping(value="/mypage")
+public class MyPageControllerImpl extends baseController implements MyPageController {
 	@Autowired
 	MyPageService myPageService;
 	@Autowired
 	MemberVO memberVO;
 	
 	@Override
-	@RequestMapping(value = "/myPageMain.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/myPageMain.do", method = RequestMethod.POST)
 	public ModelAndView myPageMain(@RequestParam(required = false, value = "message") String message, 
 			HttpServletRequest request, HttpServletResponse response) throws Exception {
 		HttpSession session=request.getSession();
@@ -88,7 +91,7 @@ public class MyPageControllerImpl implements MyPageController {
 		String fixedSearchPeriod = dateMap.get("fixedSearchPeriod");
 		String beginDate=null, endDate=null;
 		
-		String [] tempDate=calcSearchPeriod(fixedSearchPeriod).split(",");
+		String [] tempDate= calcSearchPeriod(fixedSearchPeriod).split(",");
 		beginDate=tempDate[0];
 		endDate=tempDate[1];
 		dateMap.put("beginDate", beginDate);

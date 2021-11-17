@@ -17,6 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.projectQ.conf.admin.member.service.AdminMemberService;
 import com.projectQ.conf.common.base.baseController;
+import com.projectQ.conf.member.vo.MemberVO;
 
 @Controller("adminMemberController")
 @RequestMapping(value = "/admin/member")

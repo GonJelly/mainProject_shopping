@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Repository;
 
+import com.projectQ.conf.member.vo.MemberVO;
+
 @Repository("adminMemberDao")
 public class AdminMemberImpl implements AdminMemberDAO {
 	@Autowired

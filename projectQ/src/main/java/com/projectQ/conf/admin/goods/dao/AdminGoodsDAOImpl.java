@@ -9,7 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Repository;
 
+import com.projectQ.conf.goods.vo.GoodsVO;
 import com.projectQ.conf.goods.vo.ImageFileVO;
+import com.projectQ.conf.order.vo.OrderVO;
 
 @Repository("adminGoodsDAO")
 public class AdminGoodsDAOImpl implements AdminGoodsDAO {

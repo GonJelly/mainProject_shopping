@@ -14,7 +14,7 @@ public class OrderVO {
 	private String goods_title;
 	private int order_goods_qty;
 	private int goods_sales_price;
-	private String fileName;
+	private String goods_fileName;
 	private String receiver_name;
 	private String receiver_hp1;
 	private String receiver_hp2;
@@ -30,10 +30,17 @@ public class OrderVO {
 	private String card_com_name;
 	private String card_pay_month;
 	private String pay_orderer_hp_num;
+	private String pay_order_time;
 	private String delivery_state;
-	private Date pay_order_time;
+	private String final_total_price;
 	private String orderer_hp;
 	
+	public String getPay_order_time() {
+		return pay_order_time;
+	}
+	public void setPay_order_time(String pay_order_time) {
+		this.pay_order_time = pay_order_time;
+	}
 	public int getOrder_seq_num() {
 		return order_seq_num;
 	}
@@ -82,11 +89,11 @@ public class OrderVO {
 	public void setGoods_sales_price(int goods_sales_price) {
 		this.goods_sales_price = goods_sales_price;
 	}
-	public String getFileName() {
-		return fileName;
+	public String getGoods_fileName() {
+		return goods_fileName;
 	}
-	public void setFileName(String fileName) {
-		this.fileName = fileName;
+	public void setGoods_fileName(String goods_fileName) {
+		this.goods_fileName = goods_fileName;
 	}
 	public String getReceiver_name() {
 		return receiver_name;
@@ -184,17 +191,17 @@ public class OrderVO {
 	public void setDelivery_state(String delivery_state) {
 		this.delivery_state = delivery_state;
 	}
-	public Date getPay_order_time() {
-		return pay_order_time;
-	}
-	public void setPay_order_time(Date pay_order_time) {
-		this.pay_order_time = pay_order_time;
-	}
 	public String getOrderer_hp() {
 		return orderer_hp;
 	}
 	public void setOrderer_hp(String orderer_hp) {
 		this.orderer_hp = orderer_hp;
+	}
+	public String getFinal_total_price() {
+		return final_total_price;
+	}
+	public void setFinal_total_price(String final_total_price) {
+		this.final_total_price = final_total_price;
 	}
 	
 	

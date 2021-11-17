@@ -24,6 +24,9 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.projectQ.conf.admin.goods.service.AdminGoodsService;
 import com.projectQ.conf.common.base.baseController;
+import com.projectQ.conf.goods.vo.GoodsVO;
+import com.projectQ.conf.goods.vo.ImageFileVO;
+import com.projectQ.conf.member.vo.MemberVO;
 
 
 @Controller("adminGoodsController")
@@ -67,8 +70,8 @@ public class AdminGoodsControllerImpl extends baseController implements AdminGoo
 		condMap.put("pageNum",pageNum);
 		condMap.put("beginDate",beginDate);
 		condMap.put("endDate", endDate);
-		List<GoodsVO> newGoodsList=adminGoodsService.listNewGoods(condMap);
-		mav.addObject("newGoodsList", newGoodsList);
+//		List<GoodsVO> newGoodsList=adminGoodsService.listNewGoods(condMap);
+//		mav.addObject("newGoodsList", newGoodsList);
 		
 		String beginDate1[]=beginDate.split("-");
 		String endDate2[]=endDate.split("-");
@@ -287,7 +290,7 @@ public class AdminGoodsControllerImpl extends baseController implements AdminGoo
 					imageFileVO.setReg_id(reg_id);
 				}
 				
-			    adminGoodsService.modifyGoodsImage(imageFileList);
+//			    adminGoodsService.modifyGoodsImage(imageFileList);
 				for(ImageFileVO  imageFileVO:imageFileList) {
 					imageFileName = imageFileVO.getFileName();
 					File srcFile = new File(CURR_IMAGE_REPO_PATH+"\\"+"temp"+"\\"+imageFileName);

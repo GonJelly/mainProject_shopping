@@ -1,15 +1,19 @@
 package com.projectQ.conf.order.controller;
 
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.projectQ.conf.goods.vo.GoodsVO;
 import com.projectQ.conf.order.vo.OrderVO;
 
 public interface OrderController {
 	
 	public ModelAndView orderEachGoods(@ModelAttribute("orderVO") OrderVO _orderVO,HttpServletRequest request,HttpServletResponse response) throws Exception;
+	public ModelAndView orderAllCartGoods(@RequestParam("cart_goods_qty") String[] cart_goods_qty, HttpServletRequest request,HttpServletResponse response) throws Exception;
+	public ModelAndView payToOrderGoods(@RequestParam Map<String, String> _receiverMap, HttpServletRequest request, HttpServletResponse response) throws Exception;
 }

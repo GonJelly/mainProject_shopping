@@ -194,7 +194,6 @@ function fn_order_all_cart_goods(){
 				<td>합계</td>
 				<td>주문</td>
 			</tr>
-			
 			 <c:choose>
 				    <c:when test="${ empty myCartList }">
 				    <tr>
@@ -203,73 +202,71 @@ function fn_order_all_cart_goods(){
 				       </td>
 				     </tr>
 				    </c:when>
-			        <c:otherwise>
-			 <tr>       
-               <form name="frm_order_all_cart">
-				      <c:forEach var="item" items="${myGoodsList }" varStatus="cnt">
-				       <c:set var="cart_goods_qty" value="${myCartList[cnt.count-1].cart_goods_qty}" />
-				       <c:set var="cart_id" value="${myCartList[cnt.count-1].cart_id}" />
-					<td><input type="checkbox" name="checked_goods"  checked  value="${item.goods_id }"  onClick="calcGoodsPrice(${item.goods_sales_price },this)"></td>
-					<td class="goods_image">
-					<a href="${contextPath}/goods/goodsDetail.do?goods_id=${item.goods_id }">
-						<img width="75" alt="" src="${contextPath}/thumbnails.do?goods_id=${item.goods_id}&fileName=${item.goods_fileName}"  />
-					</a>
-					</td>
-					<td>
-						<h2>
-							<a href="${contextPath}/goods/goodsDetail.do?goods_id=${item.goods_id }">${item.goods_title }</a>
-						</h2>
-					</td>
-					<td class="price"><span>${item.goods_price }원</span></td>
-					<td>
-					   <strong>
-					      <fmt:formatNumber  value="${item.goods_sales_price*0.9}" type="number" var="discounted_price" />
-				            ${discounted_price}원(10%할인)
-				         </strong>
-					</td>
-					<td>
-					   <input type="text" id="cart_goods_qty" name="cart_goods_qty" size=3 value="${cart_goods_qty}"><br>
-						<a href="javascript:modify_cart_qty(${item.goods_id },${item.goods_sales_price*0.9 },${cnt.count-1 });" >
-						    <img width=25 alt=""  src="${contextPath}/resources/image/btn_modify_qty.jpg">
+			        <c:otherwise>    
+					   <tr> 
+					   <form name="frm_order_all_cart"> 
+				      	<c:forEach var="item" items="${myGoodsList }" varStatus="cnt">
+					       <c:set var="cart_goods_qty" value="${myCartList[cnt.count-1].cart_goods_qty}" />
+					       <c:set var="cart_id" value="${myCartList[cnt.count-1].cart_id}" />
+						<td><input type="checkbox" name="checked_goods"  checked  value="${item.goods_id }"  onClick="calcGoodsPrice(${item.goods_sales_price },this)"></td>
+						<td class="goods_image">
+						<a href="${contextPath}/goods/goodsDetail.do?goods_id=${item.goods_id }">
+							<img width="75" alt="" src="${contextPath}/thumbnails.do?goods_id=${item.goods_id}&fileName=${item.goods_fileName}"  />
 						</a>
-					</td>
-					<td>
-					   <strong>
-					    <fmt:formatNumber  value="${item.goods_sales_price*0.9*cart_goods_qty}" type="number" var="total_sales_price" />
-				         ${total_sales_price}원
-					</strong> </td>
-					<td>
-					      <a href="javascript:fn_order_each_goods('${item.goods_id }','${item.goods_title }','${item.goods_sales_price}','${item.goods_fileName}');">
-					       	<img width="75" alt=""  src="${contextPath}/resources/image/btn_order.jpg">
-							</a><br>
-					 	<a href="#"> 
-					 	   <img width="75" alt=""
-							src="${contextPath}/resources/image/btn_order_later.jpg">
-						</a><br> 
-						<a href="#"> 
-						   <img width="75" alt=""
-							src="${contextPath}/resources/image/btn_add_list.jpg">
-						</A><br> 
-						<a href="javascript:delete_cart_goods('${cart_id}');""> 
-						   <img width="75" alt=""
-							   src="${contextPath}/resources/image/btn_delete.jpg">
-					   </a>
-					</td>
-			</tr>
-				<c:set  var="totalGoodsPrice" value="${totalGoodsPrice+item.goods_sales_price*0.9*cart_goods_qty }" />
+						</td>
+						<td>
+							<h2>
+								<a href="${contextPath}/goods/goodsDetail.do?goods_id=${item.goods_id }">${item.goods_title }</a>
+							</h2>
+						</td>
+						<td class="price"><span>${item.goods_price }원</span></td>
+						<td>
+						   <strong>
+						      <fmt:formatNumber  value="${item.goods_sales_price*0.9}" type="number" var="discounted_price" />
+					            ${discounted_price}원(10%할인)
+					         </strong>
+						</td>
+						<td>
+						   <input type="text" id="cart_goods_qty" name="cart_goods_qty" size=3 value="${cart_goods_qty}"><br>
+							<a href="javascript:modify_cart_qty(${item.goods_id },${item.goods_sales_price*0.9 },${cnt.count-1 });" >
+							    <img width=25 alt=""  src="${contextPath}/resources/image/btn_modify_qty.jpg">
+							</a>
+						</td>
+						<td>
+						   <strong>
+						    <fmt:formatNumber  value="${item.goods_sales_price*0.9*cart_goods_qty}" type="number" var="total_sales_price" />
+					         ${total_sales_price}원
+						</strong> </td>
+						<td>
+						      <a href="javascript:fn_order_each_goods('${item.goods_id }','${item.goods_title }','${item.goods_sales_price}','${item.goods_fileName}');">
+						       	<img width="75" alt=""  src="${contextPath}/resources/image/btn_order.jpg">
+								</a><br>
+						 	<a href="#"> 
+						 	   <img width="75" alt=""
+								src="${contextPath}/resources/image/btn_order_later.jpg">
+							</a><br> 
+							<a href="#"> 
+							   <img width="75" alt=""
+								src="${contextPath}/resources/image/btn_add_list.jpg">
+							</A><br> 
+							<a href="javascript:delete_cart_goods('${cart_id}');"> 
+							   <img width="75" alt=""
+								   src="${contextPath}/resources/image/btn_delete.jpg">
+						   </a>
+						</td>
+						</tr>
+			   	<c:set  var="totalGoodsPrice" value="${totalGoodsPrice+item.goods_sales_price*0.9*cart_goods_qty }" />
 				<c:set  var="totalGoodsNum" value="${totalGoodsNum+1 }" />
-			   </c:forEach>
-		    
-		</tbody>
-	</table>
-     	
-	<div class="clear"></div>
-	 </c:otherwise>
-	</c:choose> 
+				</c:forEach>
+				</tbody>
+			</table>
+		<div class="clear"></div>
+	</c:otherwise>
+	</c:choose>
 	<br>
 	<br>
 	
-	<table  width=80%   class="list_view" style="background:#cacaff">
+	<table width=80% class="list_view" style="background:#cacaff">
 	<tbody>
 	     <tr  align=center  class="fixed" >
 	       <td class="fixed">총 상품수 </td>
@@ -331,4 +328,4 @@ function fn_order_all_cart_goods(){
 		 	<img width="75" alt="" src="${contextPath}/resources/image/btn_shoping_continue.jpg">
 		 </a>
 	<center>
-</form>	
+</form>

@@ -277,17 +277,12 @@ article h4 {
 	padding: 0px 30px 0px 0px; width: auto; text-align: center;
 }
 #goods_image figure img {
-<<<<<<< HEAD
-	border: 1px solid rgb(255, 255, 255); border-image: none; width: 242px; height: 350px; box-shadow: 2px 2px 25px #666;
+
+	border: 1px solid rgb(255, 255, 255); border-image: none; width: 280px; height: 400px; box-shadow: 2px 2px 25px #666;
 }
 #detail_table {
-	width: 470px; font-size: 0.75em; float: left;
-=======
-	border: 1px solid rgb(255, 255, 255); border-image: none; width: 150px; height: auto; box-shadow: 2px 2px 25px #666;
-}
-#detail_table {
-	width: 590px; font-size: 0.75em; float: left;
->>>>>>> bjh1646
+	width: 450px; font-size: 0.75em; float: left;
+
 }
 #detail_table table {
 	width: 95%; border-top-color: rgb(51, 51, 51); border-bottom-color: rgb(51, 51, 51); border-top-width: 2px; border-bottom-width: 1px; border-top-style: solid; border-bottom-style: solid; border-collapse: collapse;
@@ -306,7 +301,7 @@ article h4 {
 	font-family: "NanumGothic", Serif; font-size: 1.2em; font-weight: bold;
 }
 #detail_table table td.fixed {
-	width: 110px; font-weight: bold;font-size: 0.8em;
+	width: 80px; font-weight: bold;font-size: 0.8em;
 }
 
 #detail_table table td.fixed_join {
@@ -320,11 +315,9 @@ article h4 {
 	padding: 0px 10px; float: left;
 }
 #detail_table ul li a {
-<<<<<<< HEAD
+
 	border-radius: 5px; border: 2px solid rgb(153, 153, 153); border-image: none; width: 110px; height: 25px; text-align: center; padding-top: 7px; font-family: "NanumGothic", Serif; font-size: 1.2em; font-weight: bold; display: block;
-=======
-	border-radius: 5px; border: 2px solid rgb(153, 153, 153); border-image: none; width: 150px; height: 25px; text-align: center; padding-top: 7px; font-family: "NanumGothic", Serif; font-size: 1.2em; font-weight: bold; display: block;
->>>>>>> bjh1646
+
 }
 #detail_table ul li a.buy {
 	background-position: 15px; background-repeat: no-repeat;
@@ -357,7 +350,7 @@ article h4 {
 	margin: 40px auto; width: 100%;
 }
 ul.tabs {
-<<<<<<< HEAD
+
 	list-style: none; margin: 0px; padding: 0px; width:100%; height:35px; border-bottom-color: rgb(255, 0, 0); border-bottom-width: 1px; border-bottom-style: solid; float: left;
 }
 ul.tabs li {
@@ -365,15 +358,7 @@ ul.tabs li {
 }
 ul.tabs li a {
 	padding: 0px 20px; color: rgb(0, 0, 0); font-size: 15px; font-weight: bold; text-decoration: none; display: block;
-=======
-	list-style: none; margin: 0px; padding: 0px; width: 100%; height: 32px; border-bottom-color: rgb(255, 0, 0); border-bottom-width: 1px; border-bottom-style: solid; float: left;
-}
-ul.tabs li {
-	border-width: 1px; border-style: solid; border-color: rgb(153, 153, 153) rgb(153, 153, 153) rgb(255, 0, 0); margin: 0px 1px; padding: 0px; border-image: none; height: 31px; line-height: 31px; overflow: hidden; float: left; border-top-left-radius: 7px; border-top-right-radius: 7px; background-color: rgb(245, 245, 245);
-}
-ul.tabs li a {
-	padding: 0px 20px; color: rgb(0, 0, 0); font-size: 12px; font-weight: bold; text-decoration: none; display: block;
->>>>>>> bjh1646
+
 }
 ul.tabs li a:hover {
 	background-color: rgb(202, 228, 255);
@@ -606,15 +591,13 @@ article h1_TITLE {
 .main_book .book .price {
 	margin: 0px; padding: 2px 0px;
 }
-<<<<<<< HEAD
+
 .main_book .book .price h5{
 	text-decoration: line-through; display:inline;
 }
 .main_book .book .price h6{
 	display:inline;
 }
-=======
->>>>>>> bjh1646
 .main_book .book .sort {
 	margin-top: 4px;
 }

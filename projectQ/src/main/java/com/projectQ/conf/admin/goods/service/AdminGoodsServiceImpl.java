@@ -11,7 +11,9 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.projectQ.conf.admin.goods.dao.AdminGoodsDAO;
+import com.projectQ.conf.goods.vo.GoodsVO;
 import com.projectQ.conf.goods.vo.ImageFileVO;
+import com.projectQ.conf.order.vo.OrderVO;
 
 @Service("adminGoodsService")
 @Transactional(propagation = Propagation.REQUIRED)
@@ -29,18 +31,18 @@ public class AdminGoodsServiceImpl implements AdminGoodsService {
 		adminGoodsDAO.insertGoodsImageFile(imageFileList);
 		return goods_id;
 	}
-
-	@Override
-	public List<GoodsVO> listNewGoods(Map condMap) throws Exception {
-		return adminGoodsDAO.selectNewGoodsList(condMap);
-	}
+//
+//	@Override
+//	public List<GoodsVO> listNewGoods(Map condMap) throws Exception {
+//		return adminGoodsDAO.selectNewGoodsList(condMap);
+//	}
 
 	@Override
 	public Map goodsDetail(int goods_id) throws Exception {
 		Map goodsMap = new HashMap();
-		GoodsVO goodsVO=adminGoodsDAO.selectGoodsDetail(goods_id);
+//		GoodsVO goodsVO=adminGoodsDAO.selectGoodsDetail(goods_id);
 		List imageFileList=adminGoodsDAO.selectGoodsImageFileList(goods_id);
-		goodsMap.put("goods", goodsVO);
+//		goodsMap.put("goods", goodsVO);
 		goodsMap.put("imageFileList", imageFileList);
 		return goodsMap;
 	}
@@ -55,17 +57,17 @@ public class AdminGoodsServiceImpl implements AdminGoodsService {
 	public void modifyGoodsInfo(Map goodsMap) throws Exception {
 		adminGoodsDAO.updateGoodsInfo(goodsMap);	
 	}
-
-	@Override
-	public void modifyGoodsImage(List<ImageFileVO> imageFileList) throws Exception {
-		adminGoodsDAO.updateGoodsImage(imageFileList);
-		
-	}
-
-	@Override
-	public List<OrderVO> listOrderGoods(Map condMap) throws Exception {
-		return adminGoodsDAO.selectOrderGoodsList(condMap);
-	}
+//
+//	@Override
+//	public void modifyGoodsImage(List<ImageFileVO> imageFileList) throws Exception {
+//		adminGoodsDAO.updateGoodsImage(imageFileList);
+//		
+//	}
+//
+//	@Override
+//	public List<OrderVO> listOrderGoods(Map condMap) throws Exception {
+//		return adminGoodsDAO.selectOrderGoodsList(condMap);
+//	}
 
 	@Override
 	public void modifyOrderGoods(Map orderMap) throws Exception {

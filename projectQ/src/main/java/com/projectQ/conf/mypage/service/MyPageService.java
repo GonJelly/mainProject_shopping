@@ -3,6 +3,9 @@ package com.projectQ.conf.mypage.service;
 import java.util.List;
 import java.util.Map;
 
+import com.projectQ.conf.member.vo.MemberVO;
+import com.projectQ.conf.order.vo.OrderVO;
+
 public interface MyPageService {
 	public List<OrderVO> listMyOrderGoods(String member_id) throws Exception;
 	public List findMyOrderInfo(String order_id) throws Exception;

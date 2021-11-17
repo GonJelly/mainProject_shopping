@@ -5,6 +5,10 @@ import java.util.Map;
 
 import org.springframework.dao.DataAccessException;
 
+import com.projectQ.conf.goods.vo.GoodsVO;
+import com.projectQ.conf.goods.vo.ImageFileVO;
+import com.projectQ.conf.order.vo.OrderVO;
+
 public interface AdminGoodsDAO {
 	public int insertNewGoods(Map newGoodsMap) throws DataAccessException;
 	public List<GoodsVO>selectNewGoodsList(Map condMap) throws DataAccessException;

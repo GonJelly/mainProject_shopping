@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.projectQ.conf.admin.member.dao.AdminMemberDAO;
+import com.projectQ.conf.member.vo.MemberVO;
 
 @Service("adminMemberService")
 @Transactional(propagation=Propagation.REQUIRED)

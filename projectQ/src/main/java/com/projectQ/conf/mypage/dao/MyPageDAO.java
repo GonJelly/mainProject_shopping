@@ -1,8 +1,12 @@
 package com.projectQ.conf.mypage.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.dao.DataAccessException;
+
+import com.projectQ.conf.member.vo.MemberVO;
+import com.projectQ.conf.order.vo.OrderVO;
 
 public interface MyPageDAO {
 	public List<OrderVO> selectMyOrderGoodsList(String member_id) throws DataAccessException;
