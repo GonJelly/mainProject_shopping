@@ -40,7 +40,7 @@ public class CartDAOImpl implements CartDAO{
 		sqlSession.insert("mapper.cart.insertGoodsInCart",cartVO);
 	}
 	public void updateCartGoodsQty(CartVO cartVO) throws DataAccessException{
-		sqlSession.delete("mapper.cartdeleteCartGoods", cartVO);
+		sqlSession.delete("mapper.cart.updateCartGoods", cartVO);
 	}
 	public void deleteCartGoods(int cart_id) throws DataAccessException{
 		sqlSession.delete("mapper.cart.deleteCartGoods",cart_id);

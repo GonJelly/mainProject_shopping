@@ -72,7 +72,7 @@ CREATE TABLE t_shopping_order(
 	card_pay_month VARCHAR(20),
 	pay_orderer_hp_num VARCHAR(20),
 	delivery_state VARCHAR(30) DEFAULT 'delivery_prepared',
-	pay_oder_time DATE DEFAULT SYSDATE(),
+	pay_order_time DATE DEFAULT SYSDATE(),
 	orderer_hp VARCHAR(50),
 	PRIMARY KEY(order_seq_num),
 	CONSTRAINT FK_goods_order FOREIGN KEY(goods_id) REFERENCES t_shopping_goods(goods_id),

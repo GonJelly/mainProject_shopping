@@ -27,27 +27,26 @@ import com.projectQ.conf.order.vo.OrderVO;
 @RequestMapping(value="/mypage")
 public class MyPageControllerImpl extends baseController implements MyPageController {
 	@Autowired
-	MyPageService myPageService;
+	private MyPageService myPageService;
 	@Autowired
 	MemberVO memberVO;
 	
 	@Override
-	@RequestMapping(value = "/myPageMain.do", method = RequestMethod.POST)
+	@RequestMapping(value = "/myPageMain.do", method = RequestMethod.GET)
 	public ModelAndView myPageMain(@RequestParam(required = false, value = "message") String message, 
 			HttpServletRequest request, HttpServletResponse response) throws Exception {
 		HttpSession session=request.getSession();
-		session=request.getSession();
 		session.setAttribute("side_menu", "my_page");
 		
 		String viewName=(String)request.getAttribute("viewName");
 		ModelAndView mav = new ModelAndView(viewName);
 		memberVO=(MemberVO)session.getAttribute("memberInfo");
 		String member_id=memberVO.getMember_id();
-		
+		System.out.println(member_id);
 		List<OrderVO> myOrderList=myPageService.listMyOrderGoods(member_id);
 		
 		mav.addObject("message", message);
-		mav.addObject("myOrderList", myOrderList);
+		session.setAttribute("myOrderList", myOrderList);
 		
 		return mav;
 	}
@@ -61,9 +60,10 @@ public class MyPageControllerImpl extends baseController implements MyPageContro
 		HttpSession session=request.getSession();
 		MemberVO orderer=(MemberVO)session.getAttribute("memberInfo");
 		
-		List<OrderVO> myOrderLsit=myPageService.findMyOrderInfo(order_id);
+		List<OrderVO> myOrderList=myPageService.findMyOrderInfo(order_id);
+		System.out.println(myOrderList);
 		mav.addObject("orderer", orderer);
-		mav.addObject("myOrderLsit", myOrderLsit);
+		mav.addObject("myOrderList", myOrderList);
 		return mav;
 	}
 

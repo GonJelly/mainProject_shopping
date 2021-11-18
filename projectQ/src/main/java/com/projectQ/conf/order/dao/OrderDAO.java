@@ -9,5 +9,6 @@ import com.projectQ.conf.order.vo.OrderVO;
 public interface OrderDAO {
 	
 	public void insertNewOrder(List<OrderVO> orderList) throws DataAccessException;
+	public void removeOrderList(List<OrderVO> orderList) throws DataAccessException;
 
 }

@@ -32,22 +32,21 @@
 		<result property="card_com_name" column="card_com_name" />
 		<result property="card_pay_month" column="card_pay_month" />
 
-		<result property="pay_orderer_hp_num"
-			column="pay_orderer_hp_num" />
+		<result property="pay_orderer_hp_num" column="pay_orderer_hp_num" />
 		<result property="pay_order_time" column="pay_order_time" />
 		<result property="delivery_state" column="delivery_state" />
 		<result property="final_total_price" column="final_total_price" />
 		<result property="goods_qty" column="goods_qty" />
 
-		<result property="goods_filename" column="goods_filename" />
+		<result property="goods_fileName" column="goods_fileName" />
 	</resultMap>
 
-	<select id="selectMyOrderGoodsList" resultMap="orderGoodsResult"
-		parameterType="String">
+	<select id="selectMyOrderGoodsList" resultMap="orderGoodsResult" parameterType="String">
 		<![CDATA[
+
 			select * from t_shopping_order
-			where member_id=#{member_id}
-			order by pay_order_time desc
+			where member_id= #{member_id}
+			order by pay_order_time DESC
 		]]>
 	</select>
 

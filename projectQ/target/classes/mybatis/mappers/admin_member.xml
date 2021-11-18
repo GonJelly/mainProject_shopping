@@ -36,7 +36,7 @@
 	</resultMap>
 	
 	<select id="listMember" resultMap="memberResult" parameterType="java.util.HashMap">
-		select * from (
+		select d.* from (
 			    select 'rowNum' as recNum,t.*
 			       from (
 			              select  *  from t_shopping_member 
@@ -52,7 +52,7 @@
 			                </if>
 			              order by joinDate desc
 					    ) t
-				)							
+				) d							
 			where				
 		recNum between (#{chapter}-1)*100+ (#{pageNum}-1)*10+1 and (#{chapter}-1)*100+(#{pageNum})*10
 	</select>

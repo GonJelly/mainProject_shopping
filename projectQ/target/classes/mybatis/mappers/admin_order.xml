@@ -69,25 +69,28 @@
 	</resultMap>
 	
 	<select id="selectNewOrderList" resultMap="orderResult" parameterType="java.util.HashMap">
-		select * from (
-			    select 'rowNum' as recNum,t.*
-			       from (
-			              select  *  from t_shopping_order 
-			              where date_format(pay_order_time,'--')  between #{beginDate} and #{endDate}
-			                <if test="search_type=='orderer_id'">
-			                  AND orderer_id=#{search_word}
-			                </if>
-			                <if test="search_type=='orderer_name'">
-			                  AND orderer_name=#{search_word}
-			                </if>
-			                <if test="search_type=='orderer_hp_num'">
-			                   AND pay_orderer_hp_num=#{search_word} 
-			                </if>
-			              order by pay_order_time desc
-					    ) t
-					) 						
-				where				
-			recNum between (#{section}-1)*100+ (#{pageNum}-1)*10+1 and (#{section}-1)*100+(#{pageNum})*10
+		<![CDATA[
+		select d.* from (
+			    		select rowNum() as recNum, t.*
+			    		from (
+						              select  *  from t_shopping_order 
+						              where date_format(pay_order_time,'%Y-%m-%d')  between #{beginDate} and #{endDate}
+		]]>
+						                <if test="search_type=='orderer_id'">
+						                  AND order_id=#{search_word}
+						                </if>
+						                <if test="search_type=='orderer_name'">
+						                  AND orderer_name=#{search_word}
+						                </if>
+						                <if test="search_type=='orderer_hp_num'">
+						                   AND pay_orderer_hp_num=#{search_word} 
+						                </if>
+		<![CDATA[
+						              order by pay_order_time desc ) t
+						) d
+				where recNum between (#{section}-1)*100+ (#{pageNum}-1)*10+1 and (#{section}-1)*100+(#{pageNum})*10
+				
+		]]>
 	</select>
 	
 	<update id="updateDeliveryState" parameterType="java.util.Map">

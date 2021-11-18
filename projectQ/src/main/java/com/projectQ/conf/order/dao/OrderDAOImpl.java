@@ -31,4 +31,15 @@ public class OrderDAOImpl implements OrderDAO{
 		return sqlSession.selectOne("mapper.order.selectOrderID");
 	}
 
+	@Override
+	public void removeOrderList(List<OrderVO> orderList) throws DataAccessException {
+		
+		for(int i =0; i < orderList.size();i++) {
+			OrderVO orderVO = (OrderVO) orderList.get(i);
+			sqlSession.delete("mapper.order.deleteOrderList",orderVO);
+		}
+
+		
+	}
+
 }

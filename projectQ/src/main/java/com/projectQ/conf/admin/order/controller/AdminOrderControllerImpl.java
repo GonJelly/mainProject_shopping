@@ -46,7 +46,7 @@ public class AdminOrderControllerImpl extends baseController implements AdminOrd
 		dateMap.put("beginDate", beginDate);
 		dateMap.put("endDate", endDate);
 		
-		HashMap<String,Object> condMap=new HashMap<String,Object>();
+		Map<String,Object> condMap=new HashMap<String,Object>();
 		if(section== null) {
 			section = "1";
 		}

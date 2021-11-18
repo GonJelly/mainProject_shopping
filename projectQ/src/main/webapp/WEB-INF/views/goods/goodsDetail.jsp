@@ -60,7 +60,7 @@
 					alert("이미 카트에 등록된 상품입니다.");	
 				}else if(data.trim()=='alertLogin'){
 					alert("로그인이 필요합니다.");
-					location.href="/member/loginForm.do";
+					location.href="${contextPath}/member/loginForm.do";
 				}
 				
 			},

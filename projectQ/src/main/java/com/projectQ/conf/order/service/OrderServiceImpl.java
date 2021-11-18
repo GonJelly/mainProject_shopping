@@ -18,6 +18,7 @@ public class OrderServiceImpl implements OrderService{
 	@Override
 	public void addNewOrder(List<OrderVO> myOrderList) throws DataAccessException {
 		orderDAO.insertNewOrder(myOrderList);
+		orderDAO.removeOrderList(myOrderList);
 	}
 
 }

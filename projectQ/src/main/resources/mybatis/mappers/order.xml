@@ -38,7 +38,7 @@
     		<![CDATA[
 			    select *
     			from t_shopping_order
-    			where date_format(pay_order_time,'%Y-%m-%d')= date_format(sysdate(),'%Y-%m-%d')
+    			where date_format(pay_order_time,'%Y-%m-%d') = date_format(sysdate(),'%Y-%m-%d')
     			and member_id = #{member_id}
     			order by pay_order_time desc
     		]]>
@@ -117,4 +117,11 @@
     			order by pay_order_time desc
     		]]>
     	</select>
+    	
+    	<delete id="deleteOrderList" parameterType="orderVO">
+    		<![CDATA[
+    			delete from t_shopping_cart
+    			where goods_id = #{goods_id}
+    		]]>
+    	</delete>
     </mapper>

@@ -72,4 +72,20 @@
 			select count(ifnull(cart_id,0))+1 from t_shopping_cart
 		]]>
 	</select>
+	
+	<!-- 수량수정 -->
+	<update id="updateCartGoods" parameterType="cartVO">
+		<![CDATA[
+			update t_shopping_cart set cart_goods_qty = #{cart_goods_qty}
+			where member_id = #{member_id}
+			and goods_id = #{goods_id}
+		]]>
+	</update>
+	
+	<delete id="deleteCartGoods" parameterType="int">
+		<![CDATA[
+			delete from t_shopping_cart
+			where cart_id = #{cart_id}
+		]]>
+	</delete>
 </mapper>

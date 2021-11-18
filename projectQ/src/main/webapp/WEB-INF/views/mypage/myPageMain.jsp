@@ -118,7 +118,7 @@ function fn_cancel_order(order_id){
 			  </c:choose>
 			</td>
 			</tr>
-          <c:set  var="pre_order_id" value="${item.order_id}" />
+          
            </c:when>
       </c:choose>
 	   </c:forEach>

@@ -12,7 +12,7 @@ import com.projectQ.conf.member.vo.MemberVO;
 import com.projectQ.conf.mypage.dao.MyPageDAO;
 import com.projectQ.conf.order.vo.OrderVO;
 
-@Service("myPAgeService")
+@Service("myPageService")
 @Transactional(propagation = Propagation.REQUIRED)
 public class MyPageServiceImpl implements MyPageService {
 	@Autowired

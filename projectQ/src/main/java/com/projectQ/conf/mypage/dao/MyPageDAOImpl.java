@@ -1,5 +1,6 @@
 package com.projectQ.conf.mypage.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -18,7 +19,7 @@ public class MyPageDAOImpl implements MyPageDAO {
 	
 	@Override
 	public List<OrderVO> selectMyOrderGoodsList(String member_id) throws DataAccessException {
-		List<OrderVO> orderGoodsList=(List) sqlSession.selectList("mapper.mypage.selectMyOrderGoodsList", member_id);
+		List<OrderVO> orderGoodsList= (ArrayList) sqlSession.selectList("mapper.mypage.selectMyOrderGoodsList", member_id);
 		return orderGoodsList;
 	}
 
