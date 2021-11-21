@@ -49,7 +49,7 @@ public class AdminGoodsControllerImpl extends baseController implements AdminGoo
 		session.setAttribute("side_menu", "admin_mode");
 		
 		String fixedSearchPeriod = dateMap.get("fixedSearchPeriod");
-		String chapter = dateMap.get("chapter");
+		String section = dateMap.get("section");
 		String pageNum = dateMap.get("pageNum");
 		String beginDate=null, endDate=null;
 		
@@ -60,18 +60,18 @@ public class AdminGoodsControllerImpl extends baseController implements AdminGoo
 		dateMap.put("endDate", endDate);
 		
 		Map<String,Object> condMap=new HashMap<String,Object>();
-		if(chapter== null) {
-			chapter = "1";
+		if(section== null) {
+			section = "1";
 		}
-		condMap.put("chapter",chapter);
+		condMap.put("section",section);
 		if(pageNum== null) {
 			pageNum = "1";
 		}
 		condMap.put("pageNum",pageNum);
 		condMap.put("beginDate",beginDate);
 		condMap.put("endDate", endDate);
-//		List<GoodsVO> newGoodsList=adminGoodsService.listNewGoods(condMap);
-//		mav.addObject("newGoodsList", newGoodsList);
+		List<GoodsVO> newGoodsList=adminGoodsService.listNewGoods(condMap);
+		mav.addObject("newGoodsList", newGoodsList);
 		
 		String beginDate1[]=beginDate.split("-");
 		String endDate2[]=endDate.split("-");
@@ -82,7 +82,7 @@ public class AdminGoodsControllerImpl extends baseController implements AdminGoo
 		mav.addObject("endMonth",endDate2[1]);
 		mav.addObject("endDay",endDate2[2]);
 		
-		mav.addObject("chapter", chapter);
+		mav.addObject("section", section);
 		mav.addObject("pageNum", pageNum);
 		
 		return mav;

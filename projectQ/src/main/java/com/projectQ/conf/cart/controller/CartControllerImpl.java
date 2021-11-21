@@ -46,7 +46,9 @@ public class CartControllerImpl extends baseController implements CartController
 	}
 	//전송된 상품번호를 받음
 	@RequestMapping(value="/addGoodsInCart.do", method = RequestMethod.POST,produces="application/text; charset=utf-8")
-	public @ResponseBody String addGoodsInCart(@RequestParam("goods_id") int goods_id,HttpServletRequest request, HttpServletResponse response) throws Exception{
+	public @ResponseBody String addGoodsInCart(@RequestParam("goods_id") int goods_id,
+												@RequestParam("order_goods_qty") int order_goods_qty,
+												HttpServletRequest request, HttpServletResponse response) throws Exception{
 		HttpSession session= request.getSession();
 		
 		if(session.getAttribute("memberInfo") == null || session.getAttribute("memberInfo").equals("")) {
@@ -58,6 +60,7 @@ public class CartControllerImpl extends baseController implements CartController
 
 		cartVO.setMember_id(member_id);
 		cartVO.setGoods_id(goods_id);
+		cartVO.setCart_goods_qty(order_goods_qty);
 		//상품번호가 장바구니 테이블에 있는지 조회
 		boolean isAreadyExisted=cartService.findCartGoods(cartVO);
 		System.out.println("isAreadyExisted"+isAreadyExisted);

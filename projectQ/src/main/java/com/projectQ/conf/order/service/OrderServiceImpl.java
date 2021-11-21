@@ -21,4 +21,10 @@ public class OrderServiceImpl implements OrderService{
 		orderDAO.removeOrderList(myOrderList);
 	}
 
+	@Override
+	public void addmyOrderList(OrderVO orderVO) throws DataAccessException {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

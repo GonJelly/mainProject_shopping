@@ -25,11 +25,11 @@ public class GoodsServiceImpl implements GoodsService{
 		Map<String,List<GoodsVO>> goodsMap = new HashMap<String,List<GoodsVO>>();
 		
 		List<GoodsVO> goodsList = new ArrayList<GoodsVO>();
-		goodsList = goodsDAO.selectGoodsList("bigsize");
-		goodsMap.put("bigsize",goodsList);
-		
 		goodsList = goodsDAO.selectGoodsList("top");
 		goodsMap.put("top",goodsList);
+		
+		goodsList = goodsDAO.selectGoodsList("pants");
+		goodsMap.put("pants",goodsList);
 		
 		goodsList = goodsDAO.selectGoodsList("shoes");
 		goodsMap.put("shoes",goodsList);

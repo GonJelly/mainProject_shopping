@@ -13,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.projectQ.conf.common.base.baseController;
@@ -61,6 +62,7 @@ public class OrderControllerImpl extends baseController implements OrderControll
 		
 //		int goods_id = goodsVO.getGoods_id();
 		List<OrderVO> myOrderList = new ArrayList<OrderVO>();
+//		orderService.addmyOrderList(orderVO);
 		myOrderList.add(orderVO);
 		
 		session.setAttribute("myOrderList",myOrderList);
@@ -116,7 +118,7 @@ public class OrderControllerImpl extends baseController implements OrderControll
 
 	@Override
 	@RequestMapping(value="/payToOrderGoods.do" , method = RequestMethod.POST)
-	public ModelAndView payToOrderGoods(Map<String, String> _receiverMap, HttpServletRequest request,
+	public ModelAndView payToOrderGoods(@RequestParam Map<String, String> _receiverMap, HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
 		
 		request.setCharacterEncoding("utf-8");

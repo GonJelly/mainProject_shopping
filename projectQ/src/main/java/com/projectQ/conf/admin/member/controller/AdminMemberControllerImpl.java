@@ -34,7 +34,7 @@ public class AdminMemberControllerImpl extends baseController implements AdminMe
 		ModelAndView mav = new ModelAndView(viewName);
 		
 		String fixedSearchPeriod = dateMap.get("fixedSearchPeriod");
-		String section = dateMap.get("section");
+		String chapter = dateMap.get("chapter");
 		String pageNum = dateMap.get("pageNum");
 		String beginDate=null, endDate=null;
 		
@@ -45,10 +45,10 @@ public class AdminMemberControllerImpl extends baseController implements AdminMe
 		dateMap.put("endDate", endDate);
 		
 		HashMap<String, Object> condMap=new HashMap<String, Object>();
-		if(section==null) {
-			section = "1";
+		if(chapter==null) {
+			chapter = "1";
 		}
-		condMap.put("section", section);
+		condMap.put("chapter", chapter);
 		if(pageNum==null) {
 			pageNum = "1";
 		}
@@ -67,7 +67,7 @@ public class AdminMemberControllerImpl extends baseController implements AdminMe
 		mav.addObject("endMonth", endDate2[1]);
 		mav.addObject("endDay", endDate2[2]);
 		
-		mav.addObject("section", section);
+		mav.addObject("chapter", chapter);
 		mav.addObject("pageNum", pageNum);
 		
 		return mav;

@@ -41,7 +41,7 @@
 				and d.fileType = 'main_image'
 				and g.goods_status = #{goods}
 				order by g.goods_credate desc) t
-			where 'rowNum' < 10
+			where rowNum() < 9
 		]]>
 	</select>
 	

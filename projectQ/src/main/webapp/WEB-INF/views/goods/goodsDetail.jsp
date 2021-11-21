@@ -42,13 +42,17 @@
 </style>
 <script type="text/javascript">
 	function add_cart(goods_id) {
+
+		var _order_goods_qty = document.getElementById("order_goods_qty").options[document.getElementById("order_goods_qty").selectedIndex].text;
+		var order_goods_qty = Number(_order_goods_qty);
+		
 		$.ajax({
 			type : "post",
 			async : false, //false인 경우 동기식으로 처리한다.
 			url : "${contextPath}/cart/addGoodsInCart.do",
 			data : {
-				goods_id:goods_id
-				
+				goods_id:goods_id,
+				order_goods_qty:order_goods_qty
 			},
 			success : function(data, textStatus) {
 				//alert(data);
@@ -130,13 +134,16 @@ function fn_order_each_goods(goods_id,goods_title,goods_sales_price,fileName){
     formObj.method="post";
     formObj.action="${contextPath}/order/orderEachGoods.do";
     formObj.submit();
-	}	
+	}
+function myCartList(){
+	var order_
+}
 </script>
 </head>
 <body>
 	<hgroup>
-		<h1>빅사이즈</h1>
-		<h2>상의 &gt; 점퍼&코드</h2>
+		<h1>상품상세</h1>
+		<h2>${goods.goods_sort } &gt;</h2>
 		<h3>${goods.goods_title }</h3>
 		<%-- <h4>${goods.goods_writer} &nbsp; 저| ${goods.goods_publisher}</h4> --%>
 	</hgroup>
@@ -197,7 +204,7 @@ function fn_order_each_goods(goods_id,goods_title,goods_sales_price,fileName){
 				<tr>
 					<td class="fixed">배송안내</td>
 					<td class="fixed"><strong>[당일배송]</strong> 당일배송 서비스 시작!<br> <strong>[휴일배송]</strong>
-						휴일에도 배송받는 Bookshop</TD>
+						휴일에도 배송받는 FREE</TD>
 				</tr>
 				<tr>
 					<td class="fixed">도착예정일</td>
@@ -207,11 +214,11 @@ function fn_order_each_goods(goods_id,goods_title,goods_sales_price,fileName){
 					<td class="fixed">수량</td>
 					<td class="fixed">
 			      <select style="width: 60px;" id="order_goods_qty">
-				      <option>1</option>
-							<option>2</option>
-							<option>3</option>
-							<option>4</option>
-							<option>5</option>
+					    <option value="1">1</option>
+						<option value="2">2</option>
+						<option value="3">3</option>
+						<option value="4">4</option>
+						<option value="5">5</option>
 			     </select>
 					 </td>
 				</tr>
@@ -220,7 +227,6 @@ function fn_order_each_goods(goods_id,goods_title,goods_sales_price,fileName){
 		<ul>
 			<li><a class="buy" href="javascript:fn_order_each_goods('${goods.goods_id }','${goods.goods_title }','${goods.goods_sales_price}','${goods.goods_fileName}');">구매하기 </a></li>
 			<li><a class="cart" href="javascript:add_cart('${goods.goods_id }')">장바구니</a></li>
-			
 			<li><a class="wish" href="#">위시리스트</a></li>
 		</ul>
 	</div>

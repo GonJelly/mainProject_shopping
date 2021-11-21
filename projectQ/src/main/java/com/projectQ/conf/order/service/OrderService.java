@@ -9,5 +9,6 @@ import com.projectQ.conf.order.vo.OrderVO;
 public interface OrderService {
 	
 	public void addNewOrder(List<OrderVO> myOrderList) throws DataAccessException;
-
+	public void addmyOrderList(OrderVO orderVO) throws DataAccessException;
+	
 }
