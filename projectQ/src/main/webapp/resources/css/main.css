@@ -278,7 +278,7 @@ article h4 {
 }
 #goods_image figure img {
 
-	border: 1px solid rgb(255, 255, 255); border-image: none; width: 280px; height: 400px; /* box-shadow: 2px 2px 25px #666; */
+	border: 1px solid rgb(255, 255, 255); border-image: none; width: 280px; height: 350px; /* box-shadow: 2px 2px 25px #666; */
 }
 #detail_table {
 	width: 450px; font-size: 0.75em; float: left;
@@ -301,11 +301,15 @@ article h4 {
 	font-family: "NanumGothic", Serif; font-size: 1.2em; font-weight: bold;
 }
 #detail_table table td.fixed {
-	width: 80px; font-weight: bold;font-size: 0.8em;
+	width: 60px; font-weight: bold;font-size: 0.8em;
+}
+
+#detail_table table td.fixed_sub {
+	width: 200px; font-weight: bold;font-size: 0.8em;
 }
 
 #detail_table table td.fixed_join {
-	width: 110px; font-weight: bold; color: #0000cc;background:  #e1e1ff;
+	width: 140px; font-weight: bold; color: #0000cc;background:  #e1e1ff;
 }
 
 #detail_table ul {
@@ -489,7 +493,7 @@ footer img {
 }
 
 .detail_table {
-	width: 590px; font-size: 0.75em; float: left;
+	width: 630px; font-size: 0.75em; float: left;
 }
 .detail_table table {
 	width: 95%; border-top-color: rgb(51, 51, 51); border-bottom-color: rgb(51, 51, 51); border-top-width: 2px; border-bottom-width: 1px; border-top-style: solid; border-bottom-style: solid; border-collapse: collapse;
@@ -509,13 +513,13 @@ footer img {
 }
 
 .detail_table table td.fixed {
-	width: 110px; font-weight: bold;
+	width: 80px; font-weight: bold;
 }
 
 
 
 .detail_table table td.fixed_join {
-	width: 110px; font-weight: bold; color: #0000cc;background:  #e1e1ff;
+	width: 130px; font-weight: bold; color: #0000cc;background:  #e1e1ff;
 }
 
 .detail_table ul {

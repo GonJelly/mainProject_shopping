@@ -9,6 +9,8 @@
 <meta charset="utf-8">
 <script>
 	function search_goods_list(fixeSearchPeriod) {
+		
+		var searchPeriod = calcPeriod(fixeSearchPeriod);
 		var formObj = document.createElement("form");
 		var i_fixedSearch_period = document.createElement("input");
 		i_fixedSearch_period.name = "fixedSearchPeriod";
@@ -19,52 +21,57 @@
 		formObj.action = "${contextPath}/admin/goods/adminGoodsMain.do";
 		formObj.submit();
 	}
-
+	
 	function calcPeriod(search_period) {
+		
 		var dt = new Date();
 		var beginYear, endYear;
 		var beginMonth, endMonth;
 		var beginDay, endDay;
-		var beginDate, endDate;
+		var beginDate, endDate;		
+		
+		var curYear = document.getElementById("curYear").options[document.getElementById("curYear").selectedIndex].text;
+		var curMonth = document.getElementById("curMonth").options[document.getElementById("curMonth").selectedIndex].text;
+		var curDay = document.getElementById("curDay").options[document.getElementById("curDay").selectedIndex].text;
+		
+		endYear = curYear;
+		endMonth = curMonth;
+		endDay = curDay;
 
-		endYear = dt.getFullYear();
-		endMonth = dt.getMonth() + 1;
-		endDay = dt.getDate();
+		if( endYear == null || endMonth == null || endDay ==null) {
+			endYear = dt.getFullYear();
+			endMonth = dt.getMonth()+1;
+			endDay = dt.getDate();
+		}
+		
 		if (search_period == 'today') {
 			beginYear = endYear;
 			beginMonth = endMonth;
 			beginDay = endDay;
 		} else if (search_period == 'one_week') {
-			beginYear = dt.getFullYear();
-			beginMonth = dt.getMonth() + 1;
-			dt.setDate(endDay - 7);
-			beginDay = dt.getDate();
-
+			beginYear = endYear;
+			beginMonth = endMonth;
+			beginDay = Number(endDay)-7;
 		} else if (search_period == 'two_week') {
-			beginYear = dt.getFullYear();
-			beginMonth = dt.getMonth() + 1;
-			dt.setDate(endDay - 14);
-			beginDay = dt.getDate();
+			beginYear = endYear;
+			beginMonth = endMonth;
+			beginDay = Number(endDay)-14;
 		} else if (search_period == 'one_month') {
-			beginYear = dt.getFullYear();
-			dt.setMonth(endMonth - 1);
-			beginMonth = dt.getMonth();
-			beginDay = dt.getDate();
+			beginYear = endYear;
+			beginMonth = Number(endMonth) -1;
+			beginDay = endDay;
 		} else if (search_period == 'two_month') {
-			beginYear = dt.getFullYear();
-			dt.setMonth(endMonth - 2);
-			beginMonth = dt.getMonth();
-			beginDay = dt.getDate();
+			beginYear = endYear;
+			beginMonth = Number(endMonth) -2;
+			beginDay = endDay;
 		} else if (search_period == 'three_month') {
-			beginYear = dt.getFullYear();
-			dt.setMonth(endMonth - 3);
-			beginMonth = dt.getMonth();
-			beginDay = dt.getDate();
+			beginYear = endYear;
+			beginMonth = Number(endMonth) -3;
+			beginDay = endDay;
 		} else if (search_period == 'four_month') {
-			beginYear = dt.getFullYear();
-			dt.setMonth(endMonth - 4);
-			beginMonth = dt.getMonth();
-			beginDay = dt.getDate();
+			beginYear = endYear;
+			beginMonth = Number(endMonth) -4;
+			beginDay = endDay;
 		}
 
 		if (beginMonth < 10) {
@@ -92,23 +99,27 @@
 		<TABLE cellpadding="10" cellspacing="10">
 			<TBODY>
 				<TR>
-					<TD><input type="radio" name="r_search" checked /> 등록일로조회
-						&nbsp;&nbsp;&nbsp; <input type="radio" name="r_search" />상세조회
-						&nbsp;&nbsp;&nbsp;</TD>
+					<TD>
+						<input type="radio" name="r_search" checked /> 등록일로조회
+						&nbsp;&nbsp;&nbsp; 
+						<input type="radio" name="r_search" />상세조회
+						&nbsp;&nbsp;&nbsp;
+					</TD>
 				</TR>
 				<TR>
-					<TD><select name="curYear">
+					<TD><select name="curYear" id="curYear">
 							<c:forEach var="i" begin="0" end="5">
 								<c:choose>
-									<c:when test="${endYear==endYear-i}">
+									<c:when test="${endYear==2021-i}">
 										<option value="${endYear}" selected>${endYear}</option>
 									</c:when>
 									<c:otherwise>
-										<option value="${endYear-i }">${endYear-i }</option>
+										<option value="${2021-i }">${2021-i }</option>
 									</c:otherwise>
 								</c:choose>
 							</c:forEach>
-					</select>년 <select name="curMonth">
+					</select>년 
+					<select name="curMonth" id="curMonth">
 							<c:forEach var="i" begin="1" end="12">
 								<c:choose>
 									<c:when test="${endMonth==i }">
@@ -119,7 +130,8 @@
 									</c:otherwise>
 								</c:choose>
 							</c:forEach>
-					</select>월 <select name="curDay">
+					</select>월 
+					<select name="curDay" id="curDay">
 							<c:forEach var="i" begin="1" end="31">
 								<c:choose>
 									<c:when test="${endDay==i}">
@@ -130,8 +142,8 @@
 									</c:otherwise>
 								</c:choose>
 							</c:forEach>
-					</select>일 &nbsp;이전&nbsp;&nbsp;&nbsp;&nbsp; <a
-						href="javascript:search_goods_list('today')"> <img
+					</select>일 &nbsp;이전&nbsp;&nbsp;&nbsp;&nbsp; 
+					<a href="javascript:search_goods_list('today')"> <img
 							src="${contextPath}/resources/image/btn_search_one_day.jpg">
 					</a> <a href="javascript:search_goods_list('one_week')"> <img
 							src="${contextPath}/resources/image/btn_search_1_week.jpg">
@@ -157,12 +169,13 @@
 						value="조회" disabled /></td>
 				</tr>
 				<tr>
-					<td>조회한 기간:<input type="text" size="4" value="${beginYear}" />년
-						<input type="text" size="4" value="${beginMonth}" />월 <input
-						type="text" size="4" value="${beginDay}" />일 &nbsp; ~ <input
-						type="text" size="4" value="${endYear }" />년 <input type="text"
-						size="4" value="${endMonth }" />월 <input type="text" size="4"
-						value="${endDay }" />일
+					<td>조회한 기간:
+						<input type="text" size="4" value="${beginYear}" />년
+						<input type="text" size="4" value="${beginMonth}" />월 
+						<input type="text" size="4" value="${beginDay}" />일 &nbsp; ~ 
+						<input type="text" size="4" value="${endYear }" />년 
+						<input type="text" size="4" value="${endMonth }" />월 
+						<input type="text" size="4" value="${endDay }" />일
 					</td>
 				</tr>
 			</TBODY>

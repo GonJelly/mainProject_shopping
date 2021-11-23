@@ -42,6 +42,7 @@
 	<!-- 인터셉터 (viewName처리) -->
 	<mvc:interceptors>
 		<mvc:interceptor>
+			<mvc:mapping path="/*" />
 			<mvc:mapping path="/*/*.do" />
 			<mvc:mapping path="/*/*/*.do" />
 			 <beans:bean class="com.projectQ.conf.common.interceptor.ViewNameInterceptor" />

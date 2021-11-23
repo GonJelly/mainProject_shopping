@@ -175,11 +175,11 @@ function myCartList(){
 				</tr>
 				<tr class="dot_line">
 					<td class="fixed">포인트 추가적립</td>
-					<td class="fixed">만원이상 구매시 1,000P, 5만원이상 구매시 2,000P추가적립 편의점 배송 이용시 300P 추가적립</td>
+					<td class="fixed_sub">만원이상 구매시 1,000P, 5만원이상 구매시 2,000P추가적립 편의점 배송 이용시 300P 추가적립</td>
 				</tr>
 				<tr>
 					<td class="fixed">발행일</td>
-					<td class="fixed">
+					<td class="fixed_sub">
 					   <c:set var="pub_date" value="${goods.goods_published_date}" />
 					   <c:set var="arr" value="${fn:split(pub_date,' ')}" />
 					   <c:out value="${arr[0]}" />
@@ -199,20 +199,20 @@ function myCartList(){
 				 --%>
 				<tr>
 					<td class="fixed">배송료</td>
-					<td class="fixed"><strong>무료</strong></td>
+					<td class="fixed_sub"><strong>무료</strong></td>
 				</tr>
 				<tr>
 					<td class="fixed">배송안내</td>
-					<td class="fixed"><strong>[당일배송]</strong> 당일배송 서비스 시작!<br> <strong>[휴일배송]</strong>
+					<td class="fixed_sub"><strong>[당일배송]</strong> 당일배송 서비스 시작!<br> <strong>[휴일배송]</strong>
 						휴일에도 배송받는 FREE</TD>
 				</tr>
 				<tr>
 					<td class="fixed">도착예정일</td>
-					<td class="fixed">지금 주문 시 내일 도착 예정</td>
+					<td class="fixed_sub">지금 주문 시 내일 도착 예정</td>
 				</tr>
 				<tr>
 					<td class="fixed">수량</td>
-					<td class="fixed">
+					<td class="fixed_sub">
 			      <select style="width: 60px;" id="order_goods_qty">
 					    <option value="1">1</option>
 						<option value="2">2</option>

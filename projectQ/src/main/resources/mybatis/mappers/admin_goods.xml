@@ -134,7 +134,7 @@
 	<select id="selectNewGoodsList" resultMap="goodsResult" parameterType="java.util.Map">
 		<![CDATA[
 			select t.* from (
-						   select 'rowNum' as recNum,
+						   select rowNum() as recNum,
 						   		  g.goods_id,
 						          g.goods_title,
 						          g.goods_publisher,

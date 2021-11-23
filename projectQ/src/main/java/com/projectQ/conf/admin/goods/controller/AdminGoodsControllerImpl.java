@@ -48,14 +48,22 @@ public class AdminGoodsControllerImpl extends baseController implements AdminGoo
 		session=request.getSession();
 		session.setAttribute("side_menu", "admin_mode");
 		
-		String fixedSearchPeriod = dateMap.get("fixedSearchPeriod");
+		
 		String section = dateMap.get("section");
 		String pageNum = dateMap.get("pageNum");
 		String beginDate=null, endDate=null;
 		
-		String [] tempDate=calcSearchPeriod(fixedSearchPeriod).split(",");
+		String fixedSearchPeriod = dateMap.get("fixedSearchPeriod");
+		String [] tempDate = null;
+		if(fixedSearchPeriod != null) {
+			tempDate= fixedSearchPeriod.split(",");
+		} else {
+			tempDate= calcSearchPeriod(fixedSearchPeriod).split(",");
+		}
+		
 		beginDate=tempDate[0];
 		endDate=tempDate[1];
+		
 		dateMap.put("beginDate", beginDate);
 		dateMap.put("endDate", endDate);
 		

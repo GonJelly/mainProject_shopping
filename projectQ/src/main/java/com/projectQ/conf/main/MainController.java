@@ -23,7 +23,7 @@ public class MainController extends baseController{
 	@Autowired
 	GoodsService goodsService;
 
-	@RequestMapping(value="/main/main.do" , method= {RequestMethod.GET,RequestMethod.POST})
+	@RequestMapping(value={"/","/main/main.do"} , method= {RequestMethod.GET,RequestMethod.POST})
 	public ModelAndView main(HttpServletRequest request, HttpServletResponse response) throws Exception{
 		
 		HttpSession session = request.getSession();

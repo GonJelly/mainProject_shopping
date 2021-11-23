@@ -16,6 +16,11 @@
 		<put-attribute name="title" value="쇼핑몰 메인페이지" />
 		<put-attribute name="body" value="/WEB-INF/views/main/main.jsp" />
 	</definition>
+	
+	<definition name="/" extends="baseLayout">
+		<put-attribute name="title" value="쇼핑몰 메인페이지" />
+		<put-attribute name="body" value="/WEB-INF/views/main/main.jsp" />
+	</definition>
 </tiles-definitions>
 
 
