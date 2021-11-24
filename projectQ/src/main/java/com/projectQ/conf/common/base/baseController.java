@@ -21,7 +21,7 @@ import com.projectQ.conf.goods.vo.ImageFileVO;
 public abstract class baseController {
 	
 
-	private static final String CURR_IMAGE_REPO_PATH = "C:\\FREE\\file_repo";
+	private static final String CURR_IMAGE_REPO_PATH = "/home/ubuntu/FREE/file_repo";
 	
 	// ��ο� ���� �����ϱ� , ��ӽÿ���!!
 	protected List<ImageFileVO> upload(MultipartHttpServletRequest multipartRequest) throws Exception{
@@ -36,14 +36,14 @@ public abstract class baseController {
 			imageFileVO.setFileName(originalFileName); // ���� �̸�����
 			fileList.add(imageFileVO);
 			
-			File file = new File(CURR_IMAGE_REPO_PATH + "\\" + fileName);
+			File file = new File(CURR_IMAGE_REPO_PATH + "/" + fileName);
 			if(mFile.getSize() != 0) { //���� ����� 0�� �ƴϸ�!!
 				if(! file.exists()) {    // ������ �������� ������ 
 					if(file.getParentFile().mkdirs()) { // ��ο� �ش��ϴ� ���丮���� ����
 						file.createNewFile(); // ���� ���� ����
 					}
 				}
-				mFile.transferTo(new File(CURR_IMAGE_REPO_PATH + "\\" + "temp" + "\\" + originalFileName));
+				mFile.transferTo(new File(CURR_IMAGE_REPO_PATH + "/" + "temp" + "/" + originalFileName));
 			}
 			
 		}
@@ -52,7 +52,7 @@ public abstract class baseController {
 	
 	// ���� ���� Ŭ����
 	private void deleteFile(String fileName) {
-		File file = new File(CURR_IMAGE_REPO_PATH + "\\" + fileName);
+		File file = new File(CURR_IMAGE_REPO_PATH + "/" + fileName);
 		try {
 			file.delete();
 		} catch (Exception e) {

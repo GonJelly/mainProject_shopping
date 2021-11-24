@@ -71,7 +71,7 @@
 	
 	<insert id="insertNewGoods" parameterType="java.util.Map">
 		<selectKey resultType="String" keyProperty="goods_id" order="BEFORE">
-			select nextval(seq_goods_id) from dual
+			select nextval(SEQ_GOODS_ID) from dual
 		</selectKey>
 		
 		<![CDATA[
@@ -110,7 +110,7 @@
 	
 	<insert id="insertGoodsImageFile" parameterType="imageVO">
 		<selectKey resultType="int" keyProperty="image_id" order="BEFORE">
-			select nextval(seq_image_id) from dual
+			select nextval(SEQ_IMAGE_ID) from dual
 		</selectKey>
 		
 		<![CDATA[
@@ -163,7 +163,7 @@
 	
 	<select id="selectOrderGoodsList" resultMap="orderGoodsResult" parameterType="java.util.Map">
 		select d.* from (
-			    select 'rowNum' as recNum,t.*
+			    select rowNum() as recNum,t.*
 			       from (
 			              select  *  from t_shopping_order 
 			              where date_format(pay_order_time,'%Y-%m-%d')  between #{beginDate} and #{endDate}
@@ -183,7 +183,7 @@
 		recNum between (#{section}-1)*100+ (#{pageNum}-1)*10+1 and (#{section}-1)*100+(#{pageNum})*10
 	</select>
 	
-	<select id="selectGoodsDetail" resultMap="goodsResult"   parameterType="String"  >
+	<select id="selectGoodsDetail" resultMap="goodsResult"   parameterType="int"  >
 	    <![CDATA[
 		    select g.*,date_format(g.goods_published_date,'%Y-%m-%d') as goods_published_date, d.fileName from t_shopping_goods g, t_goods_detail_image d
 	        where g.goods_id=d.goods_id
@@ -193,9 +193,9 @@
     	]]>
 	</select>
 	
-	<select id="selectGoodsImageFileList" resultMap="imageResult"   parameterType="String"  >
+	<select id="selectGoodsImageFileList" resultMap="imageResult"   parameterType="int"  >
 	    <![CDATA[
-		    	select * from  t_goods_detail_image 
+		    	select * from  t_goods_detail_image
 		    	where  
 			    goods_id=#{goods_id}
 			    order by image_id asc

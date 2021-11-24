@@ -33,7 +33,7 @@ import com.projectQ.conf.member.vo.MemberVO;
 @RequestMapping(value = "/admin/goods")
 public class AdminGoodsControllerImpl extends baseController implements AdminGoodsController {
 	
-	private static final String CURR_IMAGE_REPO_PATH = "C:\\FREE\\file_repo";
+	private static final String CURR_IMAGE_REPO_PATH = "/home/ubuntu/FREE/file_repo";
 	
 	@Autowired
 	AdminGoodsService adminGoodsService;
