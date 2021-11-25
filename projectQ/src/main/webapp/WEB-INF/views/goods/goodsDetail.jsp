@@ -7,6 +7,8 @@
 <c:set var="contextPath"  value="${pageContext.request.contextPath}"  />
 <c:set var="goods"  value="${goodsMap.goodsVO}"  />
 <c:set var="imageList"  value="${goodsMap.imageList }"  />
+<c:set var="article" value="${goodsMap.articleList}" />
+
  <%
      //치환 변수 선언합니다.
       pageContext.setAttribute("crcn", "\r\n"); //개행문자
@@ -232,7 +234,7 @@ function myCartList(){
 	</div>
 	<div class="clear"></div>
 	<!-- 내용 들어 가는 곳 -->
-	<div id="container">
+	<div class="container">
 		<ul class="tabs">
 			<li><a href="#tab1">상품소개</a></li>
 			<li><a href="#tab2">리뷰</a></li>
@@ -241,7 +243,6 @@ function myCartList(){
 		</ul>
 		<div class="tab_container">
 			<div class="tab_content" id="tab1">
-				<h4>상품소개</h4>
 				<p>${fn:replace(goods.goods_intro,crcn,br)}</p>
 				<c:forEach var="image" items="${imageList }">
 					<img 
@@ -269,31 +270,49 @@ function myCartList(){
 			</div> 
 --%>
 			<div class="tab_content" id="tab2">
-				<h4>리뷰</h4>
+			
 			</div>
 			<div class="tab_content" id="tab3">
-				<h4>QnA</h4>
-				<table class="detail_table">
-					<thead>
-						<tr>
-							<td>답글상태</td>
+				<div class="detail_QnA" >
+					<c:if test="${isLogOn == true}">
+					<div class="g_btn">
+						<c:if test="${memberInfo.member_id == 'admin'}">
+							<input type="button" value="삭제하기" onclick="">
+						</c:if>
+						<input type="button" value="글쓰기" onclick="" />
+
+					</div>
+					</c:if>
+					<table>
+						<tr class="head">
+							<td style="width:60px;">번호</td>
 							<td>제목</td>
 							<td>작성자</td>
 							<td>작성일시</td>
 						</tr>
-					</thead>
-					<tbody>
-						<tr>
-							<td>답글대기</td>
-							<td>제목</td>
-							<td>작성자</td>
-							<td>작성일자</td>
-						</tr>
-					</tbody>
-				</table>
+						<c:choose>
+							<c:when test="${empty article} }">
+								<tr>
+									<td colspan="4">
+										<p>조회된 QnA가 없습니다.</p>
+									</td>
+								</tr>
+							</c:when>
+							<c:otherwise>
+								<c:forEach var="item" items="${article}" begin="1" end="10">
+									<tr>
+										<td>${item.article_id}</td>
+										<td class="fiexd_title"><a href="#">${item.article_title}</a></td>
+										<td class="fiexd_writer">${item.member_id}</td>
+										<td class="fiexd_date">${item.article_creDate}</td>
+									</tr>
+								</c:forEach>
+							</c:otherwise>
+						</c:choose>
+					</table>
+				</div>
 			</div>
 			<div class="tab_content" id="tab4">
-				<h4>주문정보</h4>
 			</div>
 		</div>
 	</div>

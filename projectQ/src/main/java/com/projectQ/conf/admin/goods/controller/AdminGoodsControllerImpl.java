@@ -33,7 +33,7 @@ import com.projectQ.conf.member.vo.MemberVO;
 @RequestMapping(value = "/admin/goods")
 public class AdminGoodsControllerImpl extends baseController implements AdminGoodsController {
 	
-	private static final String CURR_IMAGE_REPO_PATH = "/home/ubuntu/FREE/file_repo";
+	private static final String CURR_IMAGE_REPO_PATH = "C:\\FREE\\file_repo";
 	
 	@Autowired
 	AdminGoodsService adminGoodsService;
@@ -298,7 +298,7 @@ public class AdminGoodsControllerImpl extends baseController implements AdminGoo
 					imageFileVO.setReg_id(reg_id);
 				}
 				
-//			    adminGoodsService.modifyGoodsImage(imageFileList);
+			    adminGoodsService.modifyGoodsImage(imageFileList);
 				for(ImageFileVO  imageFileVO:imageFileList) {
 					imageFileName = imageFileVO.getFileName();
 					File srcFile = new File(CURR_IMAGE_REPO_PATH+"\\"+"temp"+"\\"+imageFileName);

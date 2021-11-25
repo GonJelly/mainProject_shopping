@@ -238,8 +238,9 @@
 								next</a>
 						</c:if>
 					</c:forEach>
+				</td>
+			</tr>
 		</TBODY>
-
 	</TABLE>
 	<DIV class="clear"></DIV>
 	<br>

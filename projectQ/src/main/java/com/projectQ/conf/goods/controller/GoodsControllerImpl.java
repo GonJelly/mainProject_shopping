@@ -1,5 +1,6 @@
 package com.projectQ.conf.goods.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -37,6 +38,7 @@ public class GoodsControllerImpl extends baseController implements GoodsControll
 		Map goodsMap = goodsService.goodsDetailList(goods_id);
 		mav.addObject("goodsMap", goodsMap);
 		
+		
 		HttpSession session = request.getSession();
 		GoodsVO goodsVO = (GoodsVO) goodsMap.get("goodsVO");
 		
@@ -47,6 +49,47 @@ public class GoodsControllerImpl extends baseController implements GoodsControll
 	
 	private void addGoodsInQuick(String goods_id, GoodsVO goodsVO, HttpSession session) {
 		
+		boolean already_existed = false;
+		List<GoodsVO> quickGoodsList = (ArrayList<GoodsVO>)session.getAttribute("quickGoodsList");
+		
+		if( quickGoodsList != null) {
+			if(quickGoodsList.size() < 4) {
+				for(int i =0; i<quickGoodsList.size();i++) {
+					GoodsVO _goodsBean = (GoodsVO) quickGoodsList.get(i);
+					if(goods_id.equals(_goodsBean.getGoods_id())) {
+						already_existed=true;
+						break;
+					}
+				}
+				if(already_existed==false) {
+					quickGoodsList.add(goodsVO);
+				}
+			} else {
+				for(int j=0; j < quickGoodsList.size();j++) {
+					GoodsVO _goodsDump = quickGoodsList.get(j);
+					if(goods_id.equals(_goodsDump.getGoods_id())) {
+						already_existed=true;
+						break;
+					}
+				}
+				if(already_existed == false) {
+					for(int k=quickGoodsList.size(); k > 0;k--) {
+						quickGoodsList.add(k, quickGoodsList.get(k-1));
+						
+					}
+					quickGoodsList.add(0, goodsVO);
+				}
+			}
+		} else {
+			quickGoodsList = new ArrayList<GoodsVO>();
+			quickGoodsList.add(goodsVO);
+			
+		}
+		if(quickGoodsList.size() > 5) {
+			session.setAttribute("quickGoodsListNum", 4);
+		}
+		session.setAttribute("quickGoodsList", quickGoodsList);
+
 	}
 
 	@Override

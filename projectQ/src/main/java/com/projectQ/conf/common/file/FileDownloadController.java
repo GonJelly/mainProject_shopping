@@ -16,7 +16,7 @@ import net.coobird.thumbnailator.Thumbnails;
 @Controller
 public class FileDownloadController {
 	
-	private static final String CURR_IMAGE_REPO_PATH = "/home/ubuntu/FREE/file_repo";
+	private static final String CURR_IMAGE_REPO_PATH = "C:\\FREE\\file_repo";
 
 	
 	// ���� �ٿ�ε� Ŭ����
@@ -25,7 +25,7 @@ public class FileDownloadController {
 								@RequestParam("goods_id") String goods_id,
 								HttpServletRequest request, HttpServletResponse response)	throws Exception{
 		OutputStream out = response.getOutputStream();
-		String filePath = CURR_IMAGE_REPO_PATH + "/" + goods_id + "/" + fileName;
+		String filePath = CURR_IMAGE_REPO_PATH + "\\" + goods_id + "\\" + fileName;
 		File image = new File(filePath);
 		
 		response.setHeader("Cache-Control", "no-cache");
@@ -49,7 +49,7 @@ public class FileDownloadController {
 								@RequestParam("goods_id") String goods_id,
 									HttpServletResponse response) throws Exception{
 		OutputStream out = response.getOutputStream();
-		String filePath = CURR_IMAGE_REPO_PATH + "/" + goods_id + "/" + fileName;
+		String filePath = CURR_IMAGE_REPO_PATH + "\\" + goods_id + "\\" + fileName;
 		File image = new File(filePath);
 		
 		int lastIndex = fileName.lastIndexOf(".");

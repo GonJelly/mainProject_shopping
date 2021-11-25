@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.dao.DataAccessException;
 
+import com.projectQ.conf.article.vo.ArticleVO;
 import com.projectQ.conf.goods.vo.GoodsVO;
 import com.projectQ.conf.goods.vo.ImageFileVO;
 
@@ -14,5 +15,6 @@ public interface GoodsDAO {
 	public List<ImageFileVO> selectGoodsImage(String goods_id) throws DataAccessException;
 	public List<String> selectKeyword(String keyword) throws DataAccessException;
 	public List<GoodsVO> selectGoodsSearch(String searchWord) throws DataAccessException;
+	public List<ArticleVO> selectGoodsArticle(String goods_id) throws DataAccessException;
 	
 }

@@ -4,6 +4,8 @@
 -- drop table t_shopping_goods;
 -- drop table t_shopping_member;
 
+
+
 CREATE TABLE t_shopping_member(
 	member_id VARCHAR(20),
 	member_pw VARCHAR(20),
@@ -107,7 +109,32 @@ CREATE TABLE t_shopping_cart (
 	CONSTRAINT FK_member_cart FOREIGN KEY(member_id) REFERENCES t_shopping_member(member_id)
 );
 
+CREATE TABLE t_shopping_article(
+	article_id INT(10) NOT NULL,
+	article_sort VARCHAR(50),
+	article_title VARCHAR(100),
+	article_intro VARCHAR(2000),
+	member_id VARCHAR(20),
+	goods_id INT(50),
+	article_creDate Date DEFAULT sysdate(),
+	primary key(article_id),
+	CONSTRAINT FK_member_article FOREIGN KEY(member_id) REFERENCES t_shopping_member(member_id),
+	CONSTRAINT FK_goods_article FOREIGN KEY(goods_id) REFERENCES t_shopping_goods(goods_id)
+);
 
+-- 상품 문의/댓글 테이블 --
+INSERT INTO t_shopping_article(article_id,article_sort,article_title,article_intro,member_id,goods_id) VALUES (1,'QnA','테스트1입니다.','그래요 그럴수 있다고 생각해','admin',315);
+INSERT INTO t_shopping_article(article_id,article_sort,article_title,article_intro,member_id,goods_id) VALUES (2,'QnA','테스트2입니다.','그래요 그럴수 있다고 생각해','lee',315);
+INSERT INTO t_shopping_article(article_id,article_sort,article_title,article_intro,member_id,goods_id) VALUES (3,'QnA','테스트3입니다.','그래요 그럴수 있다고 생각해','lee',315);
+INSERT INTO t_shopping_article(article_id,article_sort,article_title,article_intro,member_id,goods_id) VALUES (4,'QnA','테스트4입니다.','그래요 그럴수 있다고 생각해','lee',317);
+INSERT INTO t_shopping_article(article_id,article_sort,article_title,article_intro,member_id,goods_id) VALUES (5,'QnA','테스트5입니다.','그래요 그럴수 있다고 생각해','lee',315);
+INSERT INTO t_shopping_article(article_id,article_sort,article_title,article_intro,member_id,goods_id) VALUES (6,'QnA','테스트6입니다.','그래요 그럴수 있다고 생각해','admin',315);
+INSERT INTO t_shopping_article(article_id,article_sort,article_title,article_intro,member_id,goods_id) VALUES (101,'공지사항','부산점 오픈공지','그래요 그럴수 있다고 생각해','admin',315);
+INSERT INTO t_shopping_article(article_id,article_sort,article_title,article_intro,member_id,goods_id) VALUES (102,'공지사항','강남점 오픈공지','그래요 그럴수 있다고 생각해','admin',315);
+INSERT INTO t_shopping_article(article_id,article_sort,article_title,article_intro,member_id,goods_id) VALUES (103,'공지사항','강릉점 오픈공지','그래요 그럴수 있다고 생각해','admin',315);
+INSERT INTO t_shopping_article(article_id,article_sort,article_title,article_intro,member_id,goods_id) VALUES (104,'공지사항','송도점 오픈공지','그래요 그럴수 있다고 생각해','admin',315);
+INSERT INTO t_shopping_article(article_id,article_sort,article_title,article_intro,member_id,goods_id) VALUES (105,'공지사항','대구점 오픈공지','그래요 그럴수 있다고 생각해','admin',315);
+INSERT INTO t_shopping_article(article_id,article_sort,article_title,article_intro,member_id,goods_id) VALUES (106,'공지사항','광주점 오픈공지','그래요 그럴수 있다고 생각해','admin',315);
 
 -- 상품 정보 테이블 --
 INSERT INTO t_shopping_goods(goods_id,goods_sort,goods_title,goods_publisher,goods_price,goods_sales_price,goods_point,goods_published_date,goods_color,goods_size,goods_delivery_price,goods_delivery_date,goods_status,goods_intro,goods_credate) VALUES (314,'상의','BEEN-쭈리-맨투맨','FREE',31900,28710,1000,STR_TO_DATE('19/10/20','%y/%m/%d'),'회색','',3000,STR_TO_DATE('21/09/27','%y/%m/%d'),'top','',STR_TO_DATE('21/07/06','%y/%m/%d'));

@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 
+import com.projectQ.conf.article.vo.ArticleVO;
 import com.projectQ.conf.goods.dao.GoodsDAO;
 import com.projectQ.conf.goods.vo.GoodsVO;
 import com.projectQ.conf.goods.vo.ImageFileVO;
@@ -47,6 +48,9 @@ public class GoodsServiceImpl implements GoodsService{
 		
 		List<ImageFileVO> imageList = goodsDAO.selectGoodsImage(goods_id);
 		goodsMap.put("imageList",imageList);
+		
+		List<ArticleVO> articleList = goodsDAO.selectGoodsArticle(goods_id);
+		goodsMap.put("articleList", articleList);
 		
 		return goodsMap;
 	}

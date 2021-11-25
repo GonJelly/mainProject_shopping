@@ -71,11 +71,12 @@
 	<a href="#"><img width="190" height="163" src="${contextPath}/resources/image/n-pay.jpg"> </a>
 </div>
 <DIV id="notice">
-	<H2>문의사항</H2>
+	<H2><a href="${contextPath}/article/articleMain.do">문의사항</a>
+	<A href="${contextPath}/article/articleMain.do" style="float:right;"> <IMG  src="${contextPath}/resources/image/btn_more_see.jpg">  </A>
+	</H2>
 	<UL>
-	
-	<c:forEach  var="i" begin="1" end="5" step="1">
-		<li><a href="#">문의사항 ${I}입니다.</a></li>
+	<c:forEach  var="item" items="${articleList}" begin="1" end="7" step="1">
+		<li><a href="${contextPath}/article/articledetail.do?article_id=${item.article_id}">${item.article_title}</a></li>
 	</c:forEach>
 	</ul>
 </div>
