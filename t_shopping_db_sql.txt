@@ -136,6 +136,11 @@ INSERT INTO t_shopping_article(article_id,article_sort,article_title,article_int
 INSERT INTO t_shopping_article(article_id,article_sort,article_title,article_intro,member_id,goods_id) VALUES (104,'공지사항','송도점 오픈공지','그래요 그럴수 있다고 생각해','admin',315);
 INSERT INTO t_shopping_article(article_id,article_sort,article_title,article_intro,member_id,goods_id) VALUES (105,'공지사항','대구점 오픈공지','그래요 그럴수 있다고 생각해','admin',315);
 INSERT INTO t_shopping_article(article_id,article_sort,article_title,article_intro,member_id,goods_id) VALUES (106,'공지사항','광주점 오픈공지','그래요 그럴수 있다고 생각해','admin',315);
+INSERT INTO t_shopping_article(article_id,article_sort,article_title,article_intro,member_id,goods_id) VALUES (207,'1:1문의','안녕하세요. 1','그래요 그럴수 있다고 생각해','admin',315);
+INSERT INTO t_shopping_article(article_id,article_sort,article_title,article_intro,member_id,goods_id) VALUES (208,'1:1문의','안녕하세요. 2','그럴수 있다고 생각해','admin',315);
+INSERT INTO t_shopping_article(article_id,article_sort,article_title,article_intro,member_id,goods_id) VALUES (209,'1:1문의','안녕하세요. 3','그래요 그럴수 있다고 생각해','admin',315);
+INSERT INTO t_shopping_article(article_id,article_sort,article_title,article_intro,member_id,goods_id) VALUES (210,'1:1문의','안녕하세요. 4','그래요 그럴수 있다고 생각해','admin',315);
+
 
 -- 상품 정보 테이블 --
 INSERT INTO t_shopping_goods(goods_id,goods_sort,goods_title,goods_publisher,goods_price,goods_sales_price,goods_point,goods_published_date,goods_color,goods_size,goods_delivery_price,goods_delivery_date,goods_status,goods_intro,goods_credate) VALUES (314,'상의','BEEN-쭈리-맨투맨','FREE',31900,28710,1000,STR_TO_DATE('19/10/20','%y/%m/%d'),'회색','',3000,STR_TO_DATE('21/09/27','%y/%m/%d'),'top','',STR_TO_DATE('21/07/06','%y/%m/%d'));
@@ -184,6 +189,12 @@ INSERT INTO t_shopping_goods(goods_id,goods_sort,goods_title,goods_publisher,goo
 INSERT INTO t_shopping_goods(goods_id,goods_sort,goods_title,goods_publisher,goods_price,goods_sales_price,goods_point,goods_published_date,goods_color,goods_size,goods_delivery_price,goods_delivery_date,goods_status,goods_intro,goods_credate) VALUES (562,'신발','토끼털-블로퍼','FREE',59000,53100,2000,STR_TO_DATE('19/10/20','%y/%m/%d'),'블랙','',3000,STR_TO_DATE('21/11/03','%y/%m/%d'),'shoes','',STR_TO_DATE('21/07/06','%y/%m/%d'));
 INSERT INTO t_shopping_goods(goods_id,goods_sort,goods_title,goods_publisher,goods_price,goods_sales_price,goods_point,goods_published_date,goods_color,goods_size,goods_delivery_price,goods_delivery_date,goods_status,goods_intro,goods_credate) VALUES (563,'신발','포미르-더비슈즈','FREE',119000,107100,3000,STR_TO_DATE('19/10/20','%y/%m/%d'),'블랙','',3000,STR_TO_DATE('21/11/03','%y/%m/%d'),'shoes','',STR_TO_DATE('21/07/06','%y/%m/%d'));
 INSERT INTO t_shopping_goods(goods_id,goods_sort,goods_title,goods_publisher,goods_price,goods_sales_price,goods_point,goods_published_date,goods_color,goods_size,goods_delivery_price,goods_delivery_date,goods_status,goods_intro,goods_credate) VALUES (564,'신발','하이--1-스니커즈','FREE',54900,49410,2000,STR_TO_DATE('19/10/20','%y/%m/%d'),'블랙','',3000,STR_TO_DATE('21/11/03','%y/%m/%d'),'shoes','',STR_TO_DATE('21/07/06','%y/%m/%d'));
+
+INSERT INTO t_shopping_goods(goods_id,goods_sort,goods_title,goods_publisher,goods_price,goods_sales_price,goods_point,goods_published_date,goods_color,goods_size,goods_delivery_price,goods_delivery_date,goods_status,goods_intro,goods_credate) VALUES (621,'점퍼','나침반-자수-포인트-항공점퍼','FREE',76900,69210,2000,STR_TO_DATE('19/10/20','%y/%m/%d'),'블랙','',3000,STR_TO_DATE('21/11/03','%y/%m/%d'),'outer','',STR_TO_DATE('21/07/06','%y/%m/%d'));
+INSERT INTO t_shopping_goods(goods_id,goods_sort,goods_title,goods_publisher,goods_price,goods_sales_price,goods_point,goods_published_date,goods_color,goods_size,goods_delivery_price,goods_delivery_date,goods_status,goods_intro,goods_credate) VALUES (622,'점퍼','도베','FREE',38900,35100,2000,STR_TO_DATE('19/10/20','%y/%m/%d'),'브라운','',3000,STR_TO_DATE('21/11/03','%y/%m/%d'),'outer','',STR_TO_DATE('21/07/06','%y/%m/%d'));
+INSERT INTO t_shopping_goods(goods_id,goods_sort,goods_title,goods_publisher,goods_price,goods_sales_price,goods_point,goods_published_date,goods_color,goods_size,goods_delivery_price,goods_delivery_date,goods_status,goods_intro,goods_credate) VALUES (623,'점퍼','라우드-양털-후리스-집업','FREE',38900,35100,3000,STR_TO_DATE('19/10/20','%y/%m/%d'),'카키','',3000,STR_TO_DATE('21/11/03','%y/%m/%d'),'outer','',STR_TO_DATE('21/07/06','%y/%m/%d'));
+INSERT INTO t_shopping_goods(goods_id,goods_sort,goods_title,goods_publisher,goods_price,goods_sales_price,goods_point,goods_published_date,goods_color,goods_size,goods_delivery_price,goods_delivery_date,goods_status,goods_intro,goods_credate) VALUES (624,'점퍼','라이-삼단배색-오버핏가디건','FREE',27900,25300,2000,STR_TO_DATE('19/10/20','%y/%m/%d'),'혼합','',3000,STR_TO_DATE('21/11/03','%y/%m/%d'),'outer','',STR_TO_DATE('21/07/06','%y/%m/%d'));
+
 
 
 -- 이미지 상세 테이블 --
@@ -278,6 +289,15 @@ INSERT INTO t_goods_detail_image(image_id, goods_id, fileName, reg_id, fileType,
 INSERT INTO t_goods_detail_image(image_id, goods_id, fileName, reg_id, fileType, creDate) VALUES (344,564,'하이--1-스니커즈.jpg','admin','main_image', STR_TO_DATE('21/08/14','%y/%m/%d'));
 INSERT INTO t_goods_detail_image(image_id, goods_id, fileName, reg_id, fileType, creDate) VALUES (388,564,'하이--1-스니커즈-상세.jpg','admin','detail_image', STR_TO_DATE('21/08/14','%y/%m/%d'));
 
+INSERT INTO t_goods_detail_image(image_id, goods_id, fileName, reg_id, fileType, creDate) VALUES (432,621,'나침반-자수-포인트-항공점퍼.jpg','admin','main_image', STR_TO_DATE('21/08/14','%y/%m/%d'));
+INSERT INTO t_goods_detail_image(image_id, goods_id, fileName, reg_id, fileType, creDate) VALUES (443,621,'나침반-자수-포인트-항공점퍼-상세.jpg','admin','detail_image', STR_TO_DATE('21/08/14','%y/%m/%d'));
+INSERT INTO t_goods_detail_image(image_id, goods_id, fileName, reg_id, fileType, creDate) VALUES (433,622,'도베.jpg','admin','main_image', STR_TO_DATE('21/08/14','%y/%m/%d'));
+INSERT INTO t_goods_detail_image(image_id, goods_id, fileName, reg_id, fileType, creDate) VALUES (444,622,'도베-상세.jpg','admin','detail_image', STR_TO_DATE('21/08/14','%y/%m/%d'));
+INSERT INTO t_goods_detail_image(image_id, goods_id, fileName, reg_id, fileType, creDate) VALUES (434,623,'라우드-양털-후리스-집업.jpg','admin','main_image', STR_TO_DATE('21/08/14','%y/%m/%d'));
+INSERT INTO t_goods_detail_image(image_id, goods_id, fileName, reg_id, fileType, creDate) VALUES (445,623,'라우드-양털-후리스-집업-상세.jpg','admin','detail_image', STR_TO_DATE('21/08/14','%y/%m/%d'));
+INSERT INTO t_goods_detail_image(image_id, goods_id, fileName, reg_id, fileType, creDate) VALUES (435,624,'라이-삼단배색-오버핏가디건.jpg','admin','main_image', STR_TO_DATE('21/08/14','%y/%m/%d'));
+INSERT INTO t_goods_detail_image(image_id, goods_id, fileName, reg_id, fileType, creDate) VALUES (446,624,'라이-삼단배색-오버핏가디건-상세.jpg','admin','detail_image', STR_TO_DATE('21/08/14','%y/%m/%d'));
+
 -- 사용자 등록 --
 Insert into T_SHOPPING_MEMBER (MEMBER_ID,MEMBER_PW,MEMBER_NAME,MEMBER_GENDER,TEL1,TEL2,TEL3,HP1,HP2,HP3,SMSSTS_YN,EMAIL1,EMAIL2,EMAILSTS_YN,ZIPCODE,ROADADDRESS,JIBUNADDRESS,NAMUJIADDRESS,MEMBER_BIRTH_Y,MEMBER_BIRTH_M,MEMBER_BIRTH_D,MEMBER_BIRTH_GN,JOINDATE,DEL_YN) values ('admin','1212','어드민','101','02','1111','2222','010','1111','2222','Y','admin','test.com,non','Y','06253','서울 강남구 강남대로 298 (역삼동)','서울 강남구 역삼동 838','럭키빌딩 101호','2000','5','10','2',str_to_date('18/10/16','%y/%m/%d'),'N');
 Insert into T_SHOPPING_MEMBER (MEMBER_ID,MEMBER_PW,MEMBER_NAME,MEMBER_GENDER,TEL1,TEL2,TEL3,HP1,HP2,HP3,SMSSTS_YN,EMAIL1,EMAIL2,EMAILSTS_YN,ZIPCODE,ROADADDRESS,JIBUNADDRESS,NAMUJIADDRESS,MEMBER_BIRTH_Y,MEMBER_BIRTH_M,MEMBER_BIRTH_D,MEMBER_BIRTH_GN,JOINDATE,DEL_YN) values ('lee','1212','이병승','101','02','1111','2222','010','2222','3333','Y','lee','test.com,non','Y','13547','경기 성남시 분당구 고기로 25 (동원동)','경기 성남시 분당구 동원동 79-1','럭키빌딩 101호','2000','5','10','2',str_to_date('18/10/23','%y/%m/%d'),'N');
@@ -287,6 +307,7 @@ Insert into T_SHOPPING_MEMBER (MEMBER_ID,MEMBER_PW,MEMBER_NAME,MEMBER_GENDER,TEL
 -- drop sequence SEQ_GOODS_ID;
 -- drop sequence SEQ_IMAGE_ID;
 -- drop sequence SEQ_ORDER_ID;
+-- drop sequence SEQ_ARTICLE_ID;
 
 -- 시퀀스 작성 --
 --  SQLINES DEMO 
@@ -311,7 +332,7 @@ Insert into T_SHOPPING_MEMBER (MEMBER_ID,MEMBER_PW,MEMBER_NAME,MEMBER_GENDER,TEL
    CREATE SEQUENCE  `SEQ_ORDER_ID`  MINVALUE 0 MAXVALUE 10000000 INCREMENT BY 1 START WITH 400 NOCACHE  /* Warning: ORDER */  NOCYCLE ;
 
 --  SQLINES DEMO *** ------------------------------------
--- SQLINES DEMO ***  SEQ_ORDER_ID
+-- SQLINES DEMO ***  SEQ_ARTICLE_ID
 --  SQLINES DEMO *** ------------------------------------
 
 CREATE SEQUENCE  `SEQ_ARTICLE_ID`  MINVALUE 100 MAXVALUE 10000000 INCREMENT BY 1 START WITH 300 NOCACHE  /* Warning: ORDER */  NOCYCLE ;
