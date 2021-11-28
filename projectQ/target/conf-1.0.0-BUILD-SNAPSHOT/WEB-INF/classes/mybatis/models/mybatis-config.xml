@@ -10,5 +10,6 @@
 		<typeAlias type="com.projectQ.conf.member.vo.MemberVO" alias="memberVO" />
 		<typeAlias type="com.projectQ.conf.test.TestVO" alias="TestVO"/>
 		<typeAlias type="com.projectQ.conf.mypage.vo.MyPageVO" alias="mypageVO"/>
+		<typeAlias type="com.projectQ.conf.article.vo.ArticleVO" alias="articleVO"/>
 	</typeAliases>
 </configuration>

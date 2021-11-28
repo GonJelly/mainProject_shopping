@@ -95,6 +95,27 @@
 		}
 	}
 	
+	function btn_delete(_article_id){
+		
+		$.ajax({
+			type : "get",
+			async : false, //false인 경우 동기식으로 처리한다.
+			url : "${contextPath}/article/removeArticle.do",
+			data : {article_id:_article_id},
+			success : function(data, textStatus) {
+				alert("정상적으로 삭제하였습니다." + data);
+				location.href="${contextPath}/article/articleMain.do";
+			},
+			error : function(data, textStatus) {
+				alert("에러가 발생했습니다."+data);
+			},
+			complete : function(data, textStatus) {
+				//alert("작업을완료 했습니다");
+				
+			}
+		}); //end ajax	
+	}
+	
 function fn_order_each_goods(goods_id,goods_title,goods_sales_price,fileName){
 	var _isLogOn=document.getElementById("isLogOn");
 	var isLogOn=_isLogOn.value;
@@ -137,9 +158,15 @@ function fn_order_each_goods(goods_id,goods_title,goods_sales_price,fileName){
     formObj.action="${contextPath}/order/orderEachGoods.do";
     formObj.submit();
 	}
-function myCartList(){
-	var order_
-}
+	
+	function frm_article(){
+		var formObj=document.createElement("form");
+		
+		document.body.appendChild(formObj);
+	    formObj.method="post";
+	    formObj.action="${contextPath}/article/articleForm.do";
+	    formObj.submit();
+	}
 </script>
 </head>
 <body>
@@ -274,21 +301,21 @@ function myCartList(){
 			</div>
 			<div class="tab_content" id="tab3">
 				<div class="detail_QnA" >
-					<c:if test="${isLogOn == true}">
-					<div class="g_btn">
-						<c:if test="${memberInfo.member_id == 'admin'}">
-							<input type="button" value="삭제하기" onclick="">
-						</c:if>
-						<input type="button" value="글쓰기" onclick="" />
-
-					</div>
+					<c:if test="${isLogOn == true || isLogOn != ''}">
+						<div class="g_btn">
+							<input type="button" value="글쓰기" onclick="frm_article()" />
+	
+						</div>
 					</c:if>
 					<table>
 						<tr class="head">
-							<td style="width:60px;">번호</td>
-							<td>제목</td>
-							<td>작성자</td>
-							<td>작성일시</td>
+							<td style="width:60px;">글종류</td>
+							<td class="fiexd_title">제목</td>
+							<td class="fiexd_writer">작성자</td>
+							<td class="fiexd_date">작성일시</td>
+							<c:if test="${memberInfo.member_id == 'admin'}">
+							<td style="width:30px;">삭제</td>
+							</c:if>
 						</tr>
 						<c:choose>
 							<c:when test="${empty article} }">
@@ -301,10 +328,13 @@ function myCartList(){
 							<c:otherwise>
 								<c:forEach var="item" items="${article}" begin="1" end="10">
 									<tr>
-										<td>${item.article_id}</td>
-										<td class="fiexd_title"><a href="#">${item.article_title}</a></td>
-										<td class="fiexd_writer">${item.member_id}</td>
-										<td class="fiexd_date">${item.article_creDate}</td>
+										<td><span id="sort">${item.article_sort}</span></td>
+										<td><a href="${contextPath}/article/articleDetail.do?article_id=${item.article_id}">${item.article_title}</a></td>
+										<td>${item.member_id}</td>
+										<td>${item.article_creDate}</td>
+										<c:if test="${memberInfo.member_id == 'admin'}">
+											<td><input type="button" value="삭제" onclick="btn_delete('${item.article_id}')"></td>
+										</c:if>
 									</tr>
 								</c:forEach>
 							</c:otherwise>

@@ -97,6 +97,7 @@
 										<option value="바지">바지</option>
 										<option value="액세서리">액세서리</option>	
 										<option value="신발">신발</option>
+										<option value="점퍼">신발</option>
 								</select></td>
 							</tr>
 							<tr>
@@ -158,6 +159,7 @@
 										<option value="pants">하의</option>
 										<option value="accessory">액세서리</option>
 										<option value="shoes">신발</option>
+										<option value="shoes">점퍼</option>
 								</select></td>
 							</tr>
 							<tr>

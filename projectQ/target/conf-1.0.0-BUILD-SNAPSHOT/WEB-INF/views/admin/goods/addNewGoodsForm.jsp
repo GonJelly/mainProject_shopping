@@ -6,19 +6,68 @@
 <meta charset="utf-8">
 <head>
 <script type="text/javascript">
+	
 	var cnt = 0;
-	function fn_addFile() {
-		if (cnt == 0) {
-			$("#d_file").append(
-					"<br>" + "<input  type='file' name='main_image'  />");
-		} else {
-			$("#d_file")
-					.append(
-							"<br>"
-									+ "<input  type='file' name='detail_image"+cnt+"' />");
-		}
-
+	
+	function addfile(){
+		$('#bottom_tow').before(
+				"<tr id='detail_row"+cnt+"'>" +
+				"<td align='right'>상세이미지"+cnt+"</td>"+
+				"<td><img id='detailview"+cnt+"' src='#' width='300'></td>" +
+				"<td align='left'><input type='file' id='detail_img"+cnt+"' name='detail_image' />"
+				+"</td>"
+				+ "</tr>"
+		);	
 		cnt++;
+	}
+	
+	function deletefile(){
+		cnt = cnt-1;
+		$('#detail_row'+cnt).remove();
+	}
+	
+	$(function(){
+		/* 메인이미지 업로드 */
+		$('#main_img').change(function(){
+			var input = this;
+			if(input.files && input.files[0]){
+				
+				var reader = new FileReader();
+				
+				reader.onload = function(e){
+					$('#mainview').attr('src', e.target.result);
+				}
+				reader.readAsDataURL(input.files[0]);
+			} else {
+				$('#mainview').attr('src', '#');
+			}
+		});
+		/* 상세이미지 업로드 */
+		$('#detail_img').change(function(){
+			var input = this;
+			if(input.files && input.files[0]){
+				
+				var reader = new FileReader();
+				
+				reader.onload = function(e){
+					$('#detailview').attr('src',e.target.result);
+				}
+				reader.readAsDataURL(input.files[0]);
+			} else {
+				$('#detailview').attr('src', '#');
+			}
+		});
+		
+	});
+	
+	function readURL(input){
+		if(input.files && input.files[0]){
+			var reader = new FileReader();
+			reader.onload = function(e){
+				$('#preview').attr('src', e.target.result);
+			}
+			reader.readAsDataURL(input.files[0]);
+		}
 	}
 </script>
 </head>
@@ -43,8 +92,11 @@
 							<tr>
 								<td width=200>제품분류</td>
 								<td width=500><select name="goods_sort">
-										<option value="" selected>
-										<option value="">
+										<option value="모자" selected>모자</option>
+										<option value="상의">상의</option>
+										<option value="바지">바지</option>
+										<option value="액세서리">액세서리</option>	
+										<option value="신발">신발</option>
 								</select></td>
 							</tr>
 							<tr>
@@ -101,9 +153,10 @@
 							<tr>
 								<td>제품종류</td>
 								<td><select name="goods_status">
-										<option value="bigsize" selected>빅사이즈</option>
+										<option value="hat" selected>모자</option>
 										<option value="top">상의</option>
-										<option value="bottom">하의</option>
+										<option value="pants">하의</option>
+										<option value="accessory">액세서리</option>
 										<option value="shoes">신발</option>
 								</select></td>
 							</tr>
@@ -126,15 +179,25 @@
 					<div class="tab_content" id="tab3">
 						<h4>상품이미지</h4>
 						<table>
-							<tr>
-								<td align="right">이미지파일 첨부</td>
-
-								<td align="left"><input type="button" value="파일 추가"
-									onClick="fn_addFile()" /></td>
-								<td>
-									<div id="d_file"></div>
-								</td>
+							<tr id='main_row'>
+								<td align="right">메인이미지</td>
+								<td><img id="mainview" src="#" width=300></td>
+								<td align="left"><input  type='file' id="main_img" name='main_image' /></td>
 							</tr>
+							
+							<tr id="detail_row">
+								<td align="right">상세이미지</td>
+								<td><img id="detailview" src="#" width="300"></td>
+								<td align="left"> <input type="file" id="detail_img" name="detail_image" /></td>
+							</tr>
+
+							<tr id="bottom_tow">
+								<td>이미지 첨부 추가</td>
+								<td>
+									<input type="button" value="파일추가" onclick="addfile()" />
+									<input type="button" value="삭제" onclick="deletefile()" />
+								</td>
+							</tr>		
 						</table>
 					</div>
 				</div>

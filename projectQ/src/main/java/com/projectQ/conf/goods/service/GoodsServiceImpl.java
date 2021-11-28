@@ -70,4 +70,12 @@ public class GoodsServiceImpl implements GoodsService{
 		
 		return goodsList;
 	}
+
+	@Override
+	public List<GoodsVO> searchSortGoods(String goods_sort) throws DataAccessException {
+		
+		List<GoodsVO> SearchSortGoods = goodsDAO.selectSortGoods(goods_sort);
+		
+		return SearchSortGoods;
+	}
 }

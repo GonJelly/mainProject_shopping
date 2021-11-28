@@ -5,8 +5,10 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %> 
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <c:set var="contextPath"  value="${pageContext.request.contextPath}"  />
-<c:set var="article" value="${articleAllList}" />
-    
+<c:set var="articleQnA" value="${articleMap.QnA}" />
+<c:set var="articleNotice" value="${articleMap.Notice}" />
+<c:set var="articleOneAndOne" value="${articleMap.OneAndOne}" />
+
      <%
      //치환 변수 선언합니다.
       pageContext.setAttribute("crcn", "\r\n"); //개행문자
@@ -14,44 +16,173 @@
 	 %>
 <html>
 <head>
+<script>
+	function frm_article(){
+		var formObj=document.createElement("form");
+		
+		document.body.appendChild(formObj);
+	    formObj.method="post";
+	    formObj.action="${contextPath}/article/articleForm.do";
+	    formObj.submit();
+	}
+	
+	function btn_delete(_article_id){
+		
+		$.ajax({
+			type : "get",
+			async : false, //false인 경우 동기식으로 처리한다.
+			url : "${contextPath}/article/removeArticle.do",
+			data : {article_id:_article_id},
+			success : function(data, textStatus) {
+				alert("정상적으로 삭제하였습니다." + data);
+				location.href="${contextPath}/article/articleMain.do";
+			},
+			error : function(data, textStatus) {
+				alert("에러가 발생했습니다."+data);
+			},
+			complete : function(data, textStatus) {
+				//alert("작업을완료 했습니다");
+				
+			}
+		}); //end ajax	
+	}
+</script>
 </head>
 <body>
-<div class="detail_QnA" >
-	<c:if test="${isLogOn == true}">
-	<div class="g_btn">
-		<c:if test="${memberInfo.member_id == 'admin'}">
-			<input type="button" value="삭제하기" onclick="">
-		</c:if>
-		<input type="button" value="글쓰기" onclick="" />
-	</div>
-	</c:if>
-	<table>
-		<tr class="head">
-			<td style="width:80px;">글종류</td>
-			<td>제목</td>
-			<td>작성자</td>
-			<td>작성일시</td>
-		</tr>
-		<c:choose>
-			<c:when test="${empty article} }">
-				<tr>
-					<td colspan="4">
-						<p>조회된 QnA가 없습니다.</p>
-					</td>
-				</tr>
-			</c:when>
-			<c:otherwise>
-				<c:forEach var="item" items="${article}" begin="1" end="15">
-					<tr>
-						<td><span>${item.article_sort}<span></td>
-						<td class="fiexd_title"><a href="${contextPath}/article/articleDetail.do?article_id=${item.article_id}">${item.article_title}</a></td>
-						<td class="fiexd_writer">${item.member_id}</td>
-						<td class="fiexd_date">${item.article_creDate}</td>
-					</tr>
-				</c:forEach>
-			</c:otherwise>
-		</c:choose>
-	</table>
+<div class="container">
+		<ul class="tabs">
+			<li><a href="#tab1">QnA</a></li>
+			<li><a href="#tab2">공지사항</a></li>
+			<li><a href="#tab3">1:1문의</a></li>
+		</ul>
+		<div class="tab_container">
+			<div class="tab_content" id="tab1">
+				<div class="detail_QnA" >
+					<c:if test="${isLogOn == true}">
+						<div class="g_btn">
+							<input type="button" value="글쓰기" onclick="frm_article()" />
+						</div>
+					</c:if>
+					<table>
+						<tr class="head">
+							<td style="width:65px;">글종류</td>
+							<td class="fiexd_title">제목</td>
+							<td class="fiexd_writer">작성자</td>
+							<td class="fiexd_date">작성일시</td>
+							<c:if test="${memberInfo.member_id == 'admin'}">
+								<td style="width:30px;">삭제</td>
+							</c:if>
+						</tr>
+						<c:choose>
+							<c:when test="${empty articleQnA}">
+								<tr>
+									<td colspan="4">
+										<p>조회된 QnA가 없습니다.</p>
+									</td>
+								</tr>
+							</c:when>
+							<c:otherwise>
+								<c:forEach var="item1" items="${articleQnA}" begin="1" end="15">
+									<tr>
+										<td><span id="sort">${item1.article_sort}</span></td>
+										<td><a href="${contextPath}/article/articleDetail.do?article_id=${item1.article_id}">${item1.article_title}</a></td>
+										<td>${item1.member_id}</td>
+										<td>${item1.article_creDate}</td>
+										<c:if test="${memberInfo.member_id == 'admin'}">
+											<td><input type="button" value="삭제" onclick="btn_delete('${item1.article_id}')"></td>
+										</c:if>
+									</tr>
+								</c:forEach>
+							</c:otherwise>
+						</c:choose>
+					</table>
+				</div>
+			</div>
+			<div class="tab_content" id="tab2">
+				<div class="detail_QnA" >
+					<c:if test="${isLogOn == true}">
+						<div class="g_btn">
+							<input type="button" value="글쓰기" onclick="frm_article()" />
+						</div>
+					</c:if>
+					<table>
+						<tr class="head">
+							<td style="width:70px;">글종류</td>
+							<td class="fiexd_title">제목</td>
+							<td class="fiexd_writer">작성자</td>
+							<td class="fiexd_date">작성일시</td>
+							<c:if test="${memberInfo.member_id == 'admin'}">
+								<td style="width:30px;">삭제</td>
+							</c:if>
+						</tr>
+						<c:choose>
+							<c:when test="${empty articleNotice}">
+								<tr>
+									<td colspan="4">
+										<p>조회된 공지사항이없습니다.</p>
+									</td>
+								</tr>
+							</c:when>
+							<c:otherwise>
+								<c:forEach var="item2" items="${articleNotice}" begin="1" end="15">
+									<tr>
+										<td><span id="sort">${item2.article_sort}</span></td>
+										<td><a href="${contextPath}/article/articleDetail.do?article_id=${item2.article_id}">${item2.article_title}</a></td>
+										<td>${item2.member_id}</td>
+										<td>${item2.article_creDate}</td>
+										<c:if test="${memberInfo.member_id == 'admin'}">
+											<td><input type="button" value="삭제" onclick="btn_delete('${item2.article_id}')"></td>
+										</c:if>
+									</tr>
+								</c:forEach>
+							</c:otherwise>
+						</c:choose>
+					</table>
+				</div>
+			</div>
+			<div class="tab_content" id="tab3">
+				<div class="detail_QnA" >
+					<c:if test="${isLogOn == true}">
+						<div class="g_btn">
+							<input type="button" value="글쓰기" onclick="frm_article()" />
+						</div>
+					</c:if>
+					<table>
+						<tr class="head">
+							<td style="width:65px;">글종류</td>
+							<td class="fiexd_title">제목</td>
+							<td class="fiexd_writer">작성자</td>
+							<td class="fiexd_date">작성일시</td>
+							<c:if test="${memberInfo.member_id == 'admin'}">
+								<td style="width:30px;">삭제</td>
+							</c:if>
+						</tr>
+						<c:choose>
+							<c:when test="${empty articleOneAndOne}">
+								<tr>
+									<td colspan="4">
+										<p>조회된 문의사항이 없습니다.</p>
+									</td>
+								</tr>
+							</c:when>
+							<c:otherwise>
+								<c:forEach var="item3" items="${articleOneAndOne}" begin="1" end="15">
+									<tr>
+										<td><span id="sort">${item3.article_sort}</span></td>
+										<td><a href="${contextPath}/article/articleDetail.do?article_id=${item3.article_id}">${item3.article_title}</a></td>
+										<td>${item3.member_id}</td>
+										<td>${item3.article_creDate}</td>
+										<c:if test="${memberInfo.member_id == 'admin'}">
+											<td><input type="button" value="삭제" onclick="btn_delete('${item3.article_id}')"></td>
+										</c:if>
+									</tr>
+								</c:forEach>
+							</c:otherwise>
+						</c:choose>
+					</table>
+				</div>
+			</div>
+		</div>
 </div>
 </body>
 </html>

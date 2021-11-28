@@ -185,7 +185,7 @@
 	<DIV class="clear"></DIV>
 	<TABLE class="list_view">
 		<TBODY align=center>
-			<tr style="background: #33ff00">
+			<tr style="background:#653514;">
 				<td>상품번호</td>
 				<td>상품이름</td>
 				<td>상품색상</td>
@@ -238,8 +238,9 @@
 								next</a>
 						</c:if>
 					</c:forEach>
+				</td>
+			</tr>
 		</TBODY>
-
 	</TABLE>
 	<DIV class="clear"></DIV>
 	<br>

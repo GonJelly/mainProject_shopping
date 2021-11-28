@@ -23,11 +23,34 @@
 	</select>
 	
 	
-	<select id="selectAllarticle" resultMap="articleResult">
+	<select id="selectAllarticle" resultMap="articleResult" parameterType="String">
 		<![CDATA[
 			select * from t_shopping_article
+			where article_sort=#{article_sort}
 			order by article_creDate asc
 		]]>
 	</select>
+	
+	<select id="selectArticleDetail" resultType="articleVO" parameterType="int">
+		<![CDATA[
+			select * from t_shopping_article
+			where article_id=#{article_id}
+		]]>
+	</select>
+	
+	<insert id="insertNewArticle" parameterType="articleVO">
+		<selectKey resultType="int" keyProperty="article_id" order="BEFORE">
+			select NEXTVAL(SEQ_IMAGE_ID) from dual
+		</selectKey>
+		<![CDATA[
+			INSERT INTO t_shopping_article(article_id,article_sort,member_id,article_title,article_intro) 
+			VALUES (#{article_id},#{article_sort},#{member_id},#{article_title},#{article_intro}) 
+		]]>
+	</insert>
+	
+	<delete id="deleteArticle" parameterType="int">
+		DELETE FROM t_shopping_article 
+		where article_id = #{article_id}
+	</delete>
 	
 	</mapper>

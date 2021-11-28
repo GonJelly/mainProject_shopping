@@ -3,6 +3,7 @@
 -- drop table t_goods_detail_image;
 -- drop table t_shopping_goods;
 -- drop table t_shopping_member;
+-- drop table t_shopping_article;
 
 
 
@@ -308,3 +309,9 @@ Insert into T_SHOPPING_MEMBER (MEMBER_ID,MEMBER_PW,MEMBER_NAME,MEMBER_GENDER,TEL
 --  SQLINES DEMO *** ------------------------------------
 
    CREATE SEQUENCE  `SEQ_ORDER_ID`  MINVALUE 0 MAXVALUE 10000000 INCREMENT BY 1 START WITH 400 NOCACHE  /* Warning: ORDER */  NOCYCLE ;
+
+--  SQLINES DEMO *** ------------------------------------
+-- SQLINES DEMO ***  SEQ_ORDER_ID
+--  SQLINES DEMO *** ------------------------------------
+
+CREATE SEQUENCE  `SEQ_ARTICLE_ID`  MINVALUE 100 MAXVALUE 10000000 INCREMENT BY 1 START WITH 300 NOCACHE  /* Warning: ORDER */  NOCYCLE ;

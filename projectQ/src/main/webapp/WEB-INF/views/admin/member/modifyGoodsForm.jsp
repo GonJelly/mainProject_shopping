@@ -196,7 +196,7 @@ function fn_modify_goods(goods_id, attribute){
 										</c:when> --%>
 										<c:when test="${goods.goods_sort=='' }">
 											<option value="" selected></option>
-											<option value="">디지털 기기</option>
+											<option value="">미분류</option>
 										</c:when>
 										<c:when test="${goods.goods_sort=='' }">
 											<option value=""></option>
@@ -309,9 +309,9 @@ function fn_modify_goods(goods_id, attribute){
 						<tr>
 							<td>상품종류</td>
 							<td><select name="goods_status">
-									<option value="bestseller">베스트셀러</option>
-									<option value="steadyseller">스테디셀러</option>
-									<option value="newbook">신간</option>
+									<option value="hat">모자</option>
+									<option value="top">상의</option>
+									<option value="pants">하의</option>
 									<option value="on_sale">판매중</option>
 									<option value="buy_out" selected>품절</option>
 									<option value="out_of_print">절판</option>

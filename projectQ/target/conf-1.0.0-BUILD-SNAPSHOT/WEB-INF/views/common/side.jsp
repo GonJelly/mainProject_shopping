@@ -45,12 +45,12 @@
 	<li>
 		<h3>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;빅사이즈</h3>
 		<ul>
-			<li><a href="${contextPath}/goods/goodsList.do">모자</a></li>
-			<li><a href="#">상의</a></li>
-			<li><a href="#">하의</a></li>
-			<li><a href="#">악세사리</a></li>
-			<li><a href="#">신발</a></li>
-			<li><a href="#">점퍼</a></li>
+			<li><a href="${contextPath}/goods/goodsList.do?goods_sort=모자">모자</a></li>
+			<li><a href="${contextPath}/goods/goodsList.do?goods_sort=상의" >상의</a></li>
+			<li><a href="${contextPath}/goods/goodsList.do?goods_sort=바지" >하의</a></li>
+			<li><a href="${contextPath}/goods/goodsList.do?goods_sort=액세서리">악세사리</a></li>
+			<li><a href="${contextPath}/goods/goodsList.do?goods_sort=신발">신발</a></li>
+			<li><a href="${contextPath}/goods/goodsList.do?goods_sort=점퍼">점퍼</a></li>
 		</ul>
 	</li>
 	<li>
@@ -71,11 +71,12 @@
 	<a href="#"><img width="190" height="163" src="${contextPath}/resources/image/n-pay.jpg"> </a>
 </div>
 <DIV id="notice">
-	<H2>문의사항</H2>
+	<H2><a href="${contextPath}/article/articleMain.do">문의사항</a>
+	<A href="${contextPath}/article/articleMain.do" style="float:right;"> <IMG  src="${contextPath}/resources/image/btn_more_see.jpg">  </A>
+	</H2>
 	<UL>
-	
-	<c:forEach  var="i" begin="1" end="5" step="1">
-		<li><a href="#">문의사항 ${I}입니다.</a></li>
+	<c:forEach  var="item" items="${articleList}" begin="1" end="7" step="1">
+		<li><a href="${contextPath}/article/articleDetail.do?article_id=${item.article_id}">${item.article_title}</a></li>
 	</c:forEach>
 	</ul>
 </div>

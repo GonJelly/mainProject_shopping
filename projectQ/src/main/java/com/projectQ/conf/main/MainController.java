@@ -36,6 +36,11 @@ public class MainController extends baseController{
 		List<ArticleVO> articleList = articleService.siderArticle();
 		session.setAttribute("articleList", articleList);
 		
+		if( session.getAttribute("isLogOn") == null) {
+			boolean isLogOn = false;
+			session.setAttribute("isLogOn", isLogOn);
+		}
+		
 		String viewName = (String) request.getAttribute("viewName");
 		ModelAndView mav = new ModelAndView(viewName);
 

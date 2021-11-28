@@ -9,6 +9,7 @@ import com.projectQ.conf.goods.vo.GoodsVO;
 
 public interface GoodsService {
 	
+	public List<GoodsVO> searchSortGoods(String goods_sort) throws DataAccessException;
 	public Map goodsList() throws DataAccessException;
 	public Map goodsDetailList(String goods_id) throws DataAccessException;
 	public List<String> keywordSearch(String keyword) throws DataAccessException;

@@ -6,6 +6,10 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:set var="contextPath"  value="${pageContext.request.contextPath}" />
 
+<%
+	request.setCharacterEncoding("UTF-8");
+%>
+
 <script type="text/javascript">
 	var loopSearch=true;
 	function keywordSearch(){
@@ -87,7 +91,7 @@
 			   <li><a href="${contextPath}/member/memberForm.do">회원가입</a></li> 
 			 </c:otherwise>
 			</c:choose>
-			   <li><a href="#">고객센터</a></li>
+			   <li><a href="${contextPath}/article/articleMain.do">고객센터</a></li>
       <c:if test="${isLogOn==true and memberInfo.member_id =='admin' }">  
 	   	   <li class="no_line"><a href="${contextPath}/admin/goods/adminGoodsMain.do">관리자</a></li>
 	    </c:if>
@@ -102,7 +106,7 @@
 		</form>
 	</div>
    <div id="suggest">
-        <div id="suggestList"></div>
+        <div  id="suggestList"></div>
    </div>
 </body>
 </html>

@@ -7,6 +7,8 @@
 <c:set var="contextPath"  value="${pageContext.request.contextPath}"  />
 <c:set var="goods"  value="${goodsMap.goodsVO}"  />
 <c:set var="imageList"  value="${goodsMap.imageList }"  />
+<c:set var="article" value="${goodsMap.articleList}" />
+
  <%
      //치환 변수 선언합니다.
       pageContext.setAttribute("crcn", "\r\n"); //개행문자
@@ -135,9 +137,15 @@ function fn_order_each_goods(goods_id,goods_title,goods_sales_price,fileName){
     formObj.action="${contextPath}/order/orderEachGoods.do";
     formObj.submit();
 	}
-function myCartList(){
-	var order_
-}
+	
+	function frm_article(){
+		var formObj=document.createElement("form");
+		
+		document.body.appendChild(formObj);
+	    formObj.method="post";
+	    formObj.action="${contextPath}/article/articleForm.do";
+	    formObj.submit();
+	}
 </script>
 </head>
 <body>
@@ -232,7 +240,7 @@ function myCartList(){
 	</div>
 	<div class="clear"></div>
 	<!-- 내용 들어 가는 곳 -->
-	<div id="container">
+	<div class="container">
 		<ul class="tabs">
 			<li><a href="#tab1">상품소개</a></li>
 			<li><a href="#tab2">리뷰</a></li>
@@ -241,7 +249,6 @@ function myCartList(){
 		</ul>
 		<div class="tab_container">
 			<div class="tab_content" id="tab1">
-				<h4>상품소개</h4>
 				<p>${fn:replace(goods.goods_intro,crcn,br)}</p>
 				<c:forEach var="image" items="${imageList }">
 					<img 
@@ -269,31 +276,52 @@ function myCartList(){
 			</div> 
 --%>
 			<div class="tab_content" id="tab2">
-				<h4>리뷰</h4>
+			
 			</div>
 			<div class="tab_content" id="tab3">
-				<h4>QnA</h4>
-				<table class="detail_table">
-					<thead>
-						<tr>
-							<td>답글상태</td>
-							<td>제목</td>
-							<td>작성자</td>
-							<td>작성일시</td>
+				<div class="detail_QnA" >
+					<c:if test="${isLogOn == true || isLogOn != ''}">
+						<div class="g_btn">
+							<input type="button" value="글쓰기" onclick="frm_article()" />
+	
+						</div>
+					</c:if>
+					<table>
+						<tr class="head">
+							<td style="width:60px;">번호</td>
+							<td class="fiexd_title">제목</td>
+							<td class="fiexd_writer">작성자</td>
+							<td class="fiexd_date">작성일시</td>
+							<c:if test="${memberInfo.member_id == 'admin'}">
+							<td style="width:30px;">삭제</td>
+							</c:if>
 						</tr>
-					</thead>
-					<tbody>
-						<tr>
-							<td>답글대기</td>
-							<td>제목</td>
-							<td>작성자</td>
-							<td>작성일자</td>
-						</tr>
-					</tbody>
-				</table>
+						<c:choose>
+							<c:when test="${empty article} }">
+								<tr>
+									<td colspan="4">
+										<p>조회된 QnA가 없습니다.</p>
+									</td>
+								</tr>
+							</c:when>
+							<c:otherwise>
+								<c:forEach var="item" items="${article}" begin="1" end="10">
+									<tr>
+										<td><span id="sort">${item.article_sort}</span></td>
+										<td><a href="${contextPath}/article/articleDetail.do?article_id=${item.article_id}">${item.article_title}</a></td>
+										<td>${item.member_id}</td>
+										<td>${item.article_creDate}</td>
+										<c:if test="${memberInfo.member_id == 'admin'}">
+											<td><input type="button" value="삭제" onclick="btn_delete()"></td>
+										</c:if>
+									</tr>
+								</c:forEach>
+							</c:otherwise>
+						</c:choose>
+					</table>
+				</div>
 			</div>
 			<div class="tab_content" id="tab4">
-				<h4>주문정보</h4>
 			</div>
 		</div>
 	</div>

@@ -14,7 +14,7 @@
 		var cur_goods_num=document.getElementById("cur_goods_num");
 		var _h_goods_id=document.frm_sticky.h_goods_id;
 		var _h_goods_fileName=document.frm_sticky.h_goods_fileName;
-		if(array_index < "${quickGoodsListNum}")
+		if(array_index < _h_goods_id.length-1)
 			array_index++;
 		 	
 		var goods_id=_h_goods_id[array_index].value;

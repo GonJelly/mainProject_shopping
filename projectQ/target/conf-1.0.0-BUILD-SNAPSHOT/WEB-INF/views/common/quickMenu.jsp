@@ -14,13 +14,13 @@
 		var cur_goods_num=document.getElementById("cur_goods_num");
 		var _h_goods_id=document.frm_sticky.h_goods_id;
 		var _h_goods_fileName=document.frm_sticky.h_goods_fileName;
-		if(array_index <_h_goods_id.length-1)
+		if(array_index < _h_goods_id.length-1)
 			array_index++;
 		 	
 		var goods_id=_h_goods_id[array_index].value;
 		var fileName=_h_goods_fileName[array_index].value;
 		img_sticky.src=SERVER_URL+"?goods_id="+goods_id+"&fileName="+fileName;
-		cur_goods_num.innerHTML=array_index+1;
+		cur_goods_num.innerHTML=array_index;
 	}
 
 
@@ -30,13 +30,13 @@
 	var _h_goods_id=document.frm_sticky.h_goods_id;
 	var _h_goods_fileName=document.frm_sticky.h_goods_fileName;
 	
-	if(array_index >0)
+	if(array_index >1)
 		array_index--;
 	
 	var goods_id=_h_goods_id[array_index].value;
 	var fileName=_h_goods_fileName[array_index].value;
 	img_sticky.src=SERVER_URL+"?goods_id="+goods_id+"&fileName="+fileName;
-	cur_goods_num.innerHTML=array_index+1;
+	cur_goods_num.innerHTML=array_index;
 }
 
 function goodsDetail(){
@@ -113,10 +113,10 @@ function goodsDetail(){
 			      </c:otherwise>
 			      </c:choose>
 		     </c:forEach>
+		     </form>
 		   </c:otherwise>
 	      </c:choose>
-		 </ul>
-     </form>		 
+		 </ul>		 
 	</div>
 	 <div>
 	 <c:choose>

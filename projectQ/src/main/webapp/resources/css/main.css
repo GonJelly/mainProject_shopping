@@ -47,6 +47,12 @@ header #head_link li {
 header #search {
 	margin: 20px 10px 0px 0px; padding: 0px; float: right;
 }
+
+#suggest{
+   overflow:scroll; height:200px; display:none; position: absolute; left: 45%; top:90px; border: 0.1px  solid #87cb42; z-index:3;font-weight: bold;background-color:#ffffff; 	
+	
+}
+
 header #search .main_input {
 	padding: 0px 5px; border: 3px solid rgb(51, 102, 153); border-image: none; width: 260px; height: 22px;
 }
@@ -413,11 +419,15 @@ ul.tabs li.active a:hover {
 }
 
 .detail_QnA table td.fiexd_title{
-	width: 400px; font-weight: bold;
+	width: 380px; font-weight: bold;
 }
 
 .detail_QnA table td.fiexd_date{
 	width: 100px; font-weight: bold;
+}
+
+.detail_QnA table td span#sort {
+	padding: 2px 3px; border-width:1px; border-color: gray; border-style: solid; border-radius: 5px;
 }
 
 .tab_content h4 {
@@ -648,10 +658,6 @@ article h1_TITLE {
 }
 .main_book .book .title {
 	font-weight: bold;
-}
-#suggest{
-display:none; position: absolute; left: 830px; top:80px; border: 0.1px  solid #87cb42; z-index:3;font-weight: bold;background-color:#ffffff; 	
-	
 }
 
 .show_row_line{

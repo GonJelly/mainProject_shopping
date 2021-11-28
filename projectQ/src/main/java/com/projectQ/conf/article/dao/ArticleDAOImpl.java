@@ -23,9 +23,27 @@ public class ArticleDAOImpl implements ArticleDAO {
 	}
 
 	@Override
-	public List<ArticleVO> selectAllArticle() throws DataAccessException {
-		List<ArticleVO> AllArticleList = (ArrayList)sqlSession.selectList("mapper.article.selectAllarticle");
+	public List<ArticleVO> selectAllArticle(String article_sort) throws DataAccessException {
+		List<ArticleVO> AllArticleList = (ArrayList) sqlSession.selectList("mapper.article.selectAllarticle",article_sort);
 		return AllArticleList;
+	}
+
+	@Override
+	public ArticleVO selectArticleDetail(int article_id) throws DataAccessException {
+		ArticleVO detailList = (ArticleVO) sqlSession.selectOne("mapper.article.selectArticleDetail",article_id);
+		return detailList;
+	}
+
+	@Override
+	public void insertNewarticle(ArticleVO articleVO) throws DataAccessException {
+		sqlSession.insert("mapper.article.insertNewArticle",articleVO);
+		
+	}
+
+	@Override
+	public void deleteArticle(int article_id) throws DataAccessException {
+		sqlSession.delete("mapper.article.deleteArticle",article_id);
+		
 	}
 
 }

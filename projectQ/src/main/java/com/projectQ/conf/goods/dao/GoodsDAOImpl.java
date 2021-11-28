@@ -64,6 +64,13 @@ public class GoodsDAOImpl implements GoodsDAO{
 		
 		return articleList;
 	}
+
+	@Override
+	public List<GoodsVO> selectSortGoods(String goods_sort) throws DataAccessException {
+		
+		List<GoodsVO> SortGoods = (ArrayList) sqlSession.selectList("mapper.goods.selectSortGoods",goods_sort);
+		return SortGoods;
+	}
 	
 	
 

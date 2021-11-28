@@ -29,6 +29,8 @@ public class GoodsControllerImpl extends baseController implements GoodsControll
 	@Autowired
 	GoodsService goodsService;
 	
+	
+	
 	@RequestMapping(value="/goodsDetail.do", method= RequestMethod.GET)
 	public ModelAndView goodsDetail(@RequestParam("goods_id") String goods_id, HttpServletRequest request, HttpServletResponse response) throws Exception{
 	
@@ -93,7 +95,7 @@ public class GoodsControllerImpl extends baseController implements GoodsControll
 	}
 
 	@Override
-	@RequestMapping(value="/keywordSearch.do" , method=RequestMethod.GET)
+	@RequestMapping(value="/keywordSearch.do" , method=RequestMethod.GET ,produces = "application/text; charset=UTF-8")
 	public @ResponseBody String keywordSearch(@RequestParam("keyword") String keyword, HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
 		
@@ -125,4 +127,20 @@ public class GoodsControllerImpl extends baseController implements GoodsControll
 	
 		return mav;
 	}
+
+	@Override
+	@RequestMapping(value="/goodsList.do" , method=RequestMethod.GET)
+	public ModelAndView goodsList(@RequestParam("goods_sort") String goods_sort, HttpServletRequest request,
+			HttpServletResponse response) throws Exception {
+		
+		String viewName = (String) request.getAttribute("viewName");
+		ModelAndView mav = new ModelAndView(viewName);
+		
+		List<GoodsVO> goodsList = goodsService.searchSortGoods(goods_sort);
+		mav.addObject("goodsList",goodsList);
+		
+		return mav;
+	}
+	
+	
 }

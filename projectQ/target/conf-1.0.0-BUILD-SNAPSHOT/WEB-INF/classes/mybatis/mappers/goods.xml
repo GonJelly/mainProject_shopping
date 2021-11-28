@@ -30,6 +30,17 @@
 		<result property="fileType" column="fileType"></result>
 		<result property="creDate" column="creDate"></result>
 	</resultMap>
+	
+	<resultMap id="articleResult" type="articleVO">
+		<result property="article_id" column="article_id" />
+		<result property="article_title" column="article_title" />
+		<result property="article_sort" column="article_sort" />
+		<result property="article_intro" column="article_intro" />
+		<result property="member_id" column="member_id" />
+		<result property="goods_id" column="goods_id" />
+		<result property="goods_title" column="goods_title" />
+		<result property="article_creDate" column="article_creDate" />
+	</resultMap>
 
 	<select id="selectGoodsList" parameterType="String" resultMap="goodsResult">
 		<![CDATA[
@@ -83,6 +94,29 @@
 			from t_shopping_goods
 			where goods_title Like Concat('%',#{keyword},'%')
 			order by goods_credate desc
+		]]>
+	</select>
+	
+	<select id="selectGoodsArticle" parameterType="String" resultMap="articleResult">
+		<![CDATA[
+			select a.*, g.goods_title
+			from t_shopping_article a, t_shopping_goods g
+			where a.goods_id = g.goods_id
+			and a.member_id != 'admin'
+			and a.article_sort = 'QnA'
+			and a.goods_id = #{goods_id}
+			order by a.article_id asc
+		]]>
+	</select>
+	
+	<select id="selectSortGoods" parameterType="String" resultMap="goodsResult">
+		<![CDATA[
+			select g.*,d.fileName
+			from t_shopping_goods g, t_goods_detail_image d
+			where g.goods_id = d.goods_id
+			and g.goods_sort = #{goods_sort}
+			and d.fileType = 'main_image'
+			order by g.goods_credate desc
 		]]>
 	</select>
 </mapper>

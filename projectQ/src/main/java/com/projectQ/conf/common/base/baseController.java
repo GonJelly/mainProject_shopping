@@ -23,36 +23,36 @@ public abstract class baseController {
 
 	private static final String CURR_IMAGE_REPO_PATH = "C:\\FREE\\file_repo";
 	
-	// ��ο� ���� �����ϱ� , ��ӽÿ���!!
+	
 	protected List<ImageFileVO> upload(MultipartHttpServletRequest multipartRequest) throws Exception{
 		List<ImageFileVO> fileList = new ArrayList<ImageFileVO>();
 		Iterator<String> fileNames = multipartRequest.getFileNames();
 		while(fileNames.hasNext()) {
 			ImageFileVO imageFileVO = new ImageFileVO();
 			String fileName = fileNames.next();
-			imageFileVO.setFileType(fileName); // ���� Ÿ������
+			imageFileVO.setFileType(fileName); 
 			MultipartFile mFile = multipartRequest.getFile(fileName);
 			String originalFileName = mFile.getOriginalFilename();
-			imageFileVO.setFileName(originalFileName); // ���� �̸�����
+			imageFileVO.setFileName(originalFileName); 
 			fileList.add(imageFileVO);
 			
-			File file = new File(CURR_IMAGE_REPO_PATH + "\\" + fileName);
-			if(mFile.getSize() != 0) { //���� ����� 0�� �ƴϸ�!!
-				if(! file.exists()) {    // ������ �������� ������ 
-					if(file.getParentFile().mkdirs()) { // ��ο� �ش��ϴ� ���丮���� ����
-						file.createNewFile(); // ���� ���� ����
+			File file = new File(CURR_IMAGE_REPO_PATH + "/" + fileName);
+			if(mFile.getSize() != 0) { 
+				if(! file.exists()) {    
+					if(file.getParentFile().mkdirs()) { 
+						file.createNewFile(); 
 					}
 				}
-				mFile.transferTo(new File(CURR_IMAGE_REPO_PATH + "\\" + "temp" + "\\" + originalFileName));
+				mFile.transferTo(new File(CURR_IMAGE_REPO_PATH + "/" + "temp" + "/" + originalFileName));
 			}
 			
 		}
 		return fileList;
 	}
 	
-	// ���� ���� Ŭ����
+	
 	private void deleteFile(String fileName) {
-		File file = new File(CURR_IMAGE_REPO_PATH + "\\" + fileName);
+		File file = new File(CURR_IMAGE_REPO_PATH + "/" + fileName);
 		try {
 			file.delete();
 		} catch (Exception e) {
@@ -60,7 +60,7 @@ public abstract class baseController {
 		}
 	}
 	
-	// *.do�� ������ ��� request(��û) ó���ϴ� Ŭ����(���) , ��ӽÿ���!!
+	
 	@RequestMapping(value="/*.do" , method = {RequestMethod.GET,RequestMethod.POST})
 	protected ModelAndView viewForm(HttpServletRequest request,HttpServletResponse response) throws Exception{
 		String viewName = (String) request.getAttribute("viewName");
@@ -68,7 +68,7 @@ public abstract class baseController {
 		return mav;
 	}
 	
-	// ��¥��� Ŭ����
+	
 	protected String calcSearchPeriod(String fixedSearchPeriod) {
 		
 		String beginDate = null;

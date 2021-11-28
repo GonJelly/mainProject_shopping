@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	<mapper namespace="mapper.article">
+	<resultMap id="articleResult" type="articleVO">
+		<result property="article_id" column="article_id" />
+		<result property="article_title" column="article_title" />
+		<result property="article_sort" column="article_sort" />
+		<result property="article_intro" column="article_intro" />
+		<result property="member_id" column="member_id" />
+		<result property="goods_id" column="goods_id" />
+		<result property="goods_title" column="goods_title" />
+		<result property="article_creDate" column="article_creDate" />
+	</resultMap>
+	
+	<select id="selectSider" resultMap="articleResult">
+		<![CDATA[
+			select * from t_shopping_article
+			where article_sort='공지사항'
+			order by article_creDate asc
+		]]>
+	</select>
+	
+	
+	<select id="selectAllarticle" resultMap="articleResult" parameterType="String">
+		<![CDATA[
+			select * from t_shopping_article
+			where article_sort=#{article_sort}
+			order by article_creDate asc
+		]]>
+	</select>
+	
+	<select id="selectArticleDetail" resultType="articleVO" parameterType="int">
+		<![CDATA[
+			select * from t_shopping_article
+			where article_id=#{article_id}
+		]]>
+	</select>
+	
+	<insert id="insertNewArticle" parameterType="articleVO">
+		<selectKey resultType="int" keyProperty="article_id" order="BEFORE">
+			select NEXTVAL(SEQ_IMAGE_ID) from dual
+		</selectKey>
+		<![CDATA[
+			INSERT INTO t_shopping_article(article_id,article_sort,member_id,article_title,article_intro) 
+			VALUES (#{article_id},#{article_sort},#{member_id},#{article_title},#{article_intro}) 
+		]]>
+	</insert>
+	
+	</mapper>

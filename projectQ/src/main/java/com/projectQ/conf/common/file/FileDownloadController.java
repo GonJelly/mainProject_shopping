@@ -19,13 +19,13 @@ public class FileDownloadController {
 	private static final String CURR_IMAGE_REPO_PATH = "C:\\FREE\\file_repo";
 
 	
-	// ���� �ٿ�ε� Ŭ����
-	@RequestMapping(value="/download")
+	
+	@RequestMapping(value="/download.do")
 	protected void download(@RequestParam("fileName") String fileName,
 								@RequestParam("goods_id") String goods_id,
 								HttpServletRequest request, HttpServletResponse response)	throws Exception{
 		OutputStream out = response.getOutputStream();
-		String filePath = CURR_IMAGE_REPO_PATH + "\\" + goods_id + "\\" + fileName;
+		String filePath = CURR_IMAGE_REPO_PATH + "/" + goods_id + "/" + fileName;
 		File image = new File(filePath);
 		
 		response.setHeader("Cache-Control", "no-cache");
@@ -49,13 +49,13 @@ public class FileDownloadController {
 								@RequestParam("goods_id") String goods_id,
 									HttpServletResponse response) throws Exception{
 		OutputStream out = response.getOutputStream();
-		String filePath = CURR_IMAGE_REPO_PATH + "\\" + goods_id + "\\" + fileName;
+		String filePath = CURR_IMAGE_REPO_PATH + "/" + goods_id + "/" + fileName;
 		File image = new File(filePath);
 		
 		int lastIndex = fileName.lastIndexOf(".");
 		String imageFileName = fileName.substring(0,lastIndex);
 		if(image.exists()) {
-			Thumbnails.of(image).size(152, 194).outputFormat("jpg").toOutputStream(out);
+			Thumbnails.of(image).size(152, 194).outputFormat("png").toOutputStream(out);
 		}
 		byte[] buffer = new byte[1024 * 8];
 		out.write(buffer);
